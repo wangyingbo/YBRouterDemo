@@ -1,0 +1,14 @@
+//
+//  PrefixHeader.pch
+//  YBRouterDemo
+//
+//  Created by fengbang on 2019/10/11.
+//  Copyright © 2019 王颖博. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "YBRouterDefine.h"
+
+#endif /* PrefixHeader_pch */
