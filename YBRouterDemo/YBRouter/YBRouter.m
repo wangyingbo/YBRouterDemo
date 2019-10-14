@@ -4,7 +4,7 @@
 //
 //  Created by fengbang on 2019/10/11.
 //  Copyright © 2019 王颖博. All rights reserved.
-//
+//   
 
 #import "YBRouter.h"
 #import <UIKit/UIKit.h>
@@ -23,8 +23,8 @@
 
 
 
-const NSErrorDomain KSRouterPerformError = @"KSRouterPerformError";
-const NSErrorUserInfoKey KSRouterReasonKey = @"reason";
+const NSErrorDomain YBRouterPerformError = @"KSRouterPerformError";
+const NSErrorUserInfoKey YBRouterReasonKey = @"reason";
 
 NSArray<NSString *>* KSReadConfiguration(char *sectionName,const struct mach_header *mhp) {
     NSMutableArray *configs = [NSMutableArray array];
@@ -85,8 +85,19 @@ void _init() {
     _dyld_register_func_for_add_image(dyld_callback);
 }
 
-inline id yb_msgSend(id target, SEL aSelector,id firstParameter, ...) {
+inline id router_msgSend(id target, SEL aSelector,id firstParameter, ...) {
+    NSCAssert(target, @"target is nil");
+    NSCAssert(aSelector, @"aSelector is nil");
+    if (!target || !aSelector) {
+        NSLog(@"target and aSelector is could not be nil");
+        return nil;
+    }
     NSMethodSignature *signature = [target methodSignatureForSelector:aSelector];
+    NSCAssert(signature, @"the method is not correct");
+    if (!signature) {
+        NSLog(@"the method is not correct");
+        return nil;
+    }
     NSUInteger length = [signature numberOfArguments];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:target];
@@ -133,7 +144,7 @@ inline id yb_msgSend(id target, SEL aSelector,id firstParameter, ...) {
     NSObject *target = [NSClassFromString(targetName) new];
     if (!target) {
         if (error) {
-            *error = [NSError errorWithDomain:KSRouterPerformError code:-1 userInfo:@{KSRouterReasonKey: @"module not exists"}];
+            *error = [NSError errorWithDomain:YBRouterPerformError code:-1 userInfo:@{YBRouterReasonKey: @"target not exists"}];
         }
         return nil;
     }
@@ -141,7 +152,7 @@ inline id yb_msgSend(id target, SEL aSelector,id firstParameter, ...) {
     SEL action = NSSelectorFromString([actionName stringByAppendingString:@":"]);
     if (![target respondsToSelector:action]) {
         if (error) {
-            *error = [NSError errorWithDomain:KSRouterPerformError code:-2 userInfo:@{KSRouterReasonKey: @"method not exists"}];
+            *error = [NSError errorWithDomain:YBRouterPerformError code:-2 userInfo:@{YBRouterReasonKey: @"method not exists"}];
         }
         return nil;
     }
@@ -298,7 +309,11 @@ break;                                                         \
             viewController.rounterCompletion = rounterCompletion;
             //遵守FBRouterKVCProtocol协议则KVC赋值
             if ([viewController conformsToProtocol:@protocol(YBRouterKVCProtocol)]) {
-                [viewController setValueByKey];
+                NSArray *ignoredArr = @[];
+                if ([viewController respondsToSelector:@selector(routerIgnoredKeys)]) {
+                    ignoredArr = [viewController performSelector:@selector(routerIgnoredKeys)];
+                }
+                [viewController setValueByKeyWithIgnoredKeys:ignoredArr];
             }
         }
         

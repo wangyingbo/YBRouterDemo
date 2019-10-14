@@ -10,6 +10,7 @@
 
 @protocol YBRouterProtocol <NSObject>
 @optional;
+/**暂无实义用处待定*/
 - (BOOL)implementationRouter;
 /**实现此协议决定当前是被present还是push出来*/
 - (BOOL)routerViewControllerIsPresented;
@@ -17,5 +18,6 @@
 
 /**如果遵守YBRouterKVCProtocol协议，则所传的参数都需要有定义的成员属性或成员变量接收*/
 @protocol YBRouterKVCProtocol <YBRouterProtocol>
-
+/**KVC默认赋值时，需要被忽略的key*/
+- (NSArray<NSString *> *)routerIgnoredKeys;
 @end

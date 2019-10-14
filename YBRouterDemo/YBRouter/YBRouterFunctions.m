@@ -5,6 +5,7 @@
 //  Created by fengbang on 2018/7/16.
 //  Copyright © 2018年 com.fengbangstore. All rights reserved.
 //
+//  KSRouter
 
 #import "YBRouterFunctions.h"
 #import "YBRouterTool.h"
@@ -27,6 +28,8 @@ SingletonM(Router)
 }
 
 inline bool routerRegisterClass(Class cla,NSString *router) {
+    NSCAssert(cla, @"class is could not be nil");
+    NSCAssert(router, @"router url is could not be nil");
     if (!router) { return false; }
     if (!cla) { return false; }
     

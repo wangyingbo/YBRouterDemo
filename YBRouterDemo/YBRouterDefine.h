@@ -12,6 +12,8 @@
 
 
 #import "YBRouterHeader.h"
+@class DemoVC;
+
 
 #pragma GCC diagnostic ignored "-Wmacro-redefined"
 #define ROUTER_PREFIX "weChat://" //可自定义前缀，需要多个前缀的话可参考YBRouter.h自己定义宏
@@ -32,7 +34,6 @@
  */
 @YBControllerRegisterClass(DemoVC)
 @YBControllerRegisterClassRouter(DemoVC, "bapp/userInfo?userId=123&token=xxxx")
-@YBControllerRegisterClass(testVC)
 
 
 #endif /* YBRouterDefine_h */

@@ -115,12 +115,24 @@ id controllerInstance(Class class) {
     self.rounterParameter = rounterParameter;
 }
 
-- (void)setValueByKey {
+#pragma mark - kvc method
+- (void)setValueByKeyWithIgnoredKeys:(NSArray<NSString *> *)ignoredArr {
     NSDictionary *dic = [self getRounterParameter];
     if (!dic){ return; }
     [dic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        if (key && obj) {//[self respondsToSelector:NSSelectorFromString(key)]
-            [self setValue:obj forKey:key];
+        //[self respondsToSelector:NSSelectorFromString(key)]
+        if (key && obj) {
+            if ([key isKindOfClass:[NSNumber class]]) {
+                key = ((NSNumber *)key).stringValue;
+            }
+            if (ignoredArr.count>0 && [key isKindOfClass:[NSString class]]) {
+                if ([ignoredArr containsObject:key] || [ignoredArr containsObject:[NSString stringWithFormat:@"_%@",key]]) {
+                }else {
+                    [self setValue:obj forKey:key];
+                }
+            }else {
+                [self setValue:obj forKey:key];
+            }
         }
     }];
 }

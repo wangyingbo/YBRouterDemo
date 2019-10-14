@@ -27,15 +27,20 @@
     
     [self configRouterParameters];
     
-    [self testRouter];
+    [self configModuleRouter];
 }
 
 #pragma mark - configData
+
+/**
+ controller之间跳转与传值
+ */
 - (void)configRouterParameters {
     
     NSLog(@"****************************************");
     NSLog(@"遵守YBRouterKVCProtocol协议则KVC自动赋值");
     NSLog(@"appCode:%@",self.appCode);
+    //name实现了协议里的routerIgnoredKeys方法后，不会自动赋值了
     NSLog(@"name:%@",self.name);
     
     NSLog(@"****************************************");
@@ -52,7 +57,10 @@
     NSLog(@"****************************************");
 }
 
-- (void)testRouter {
+/**
+ 测试模块间的通信与传值
+ */
+- (void)configModuleRouter {
     
     //1、直接调用
     [YBRouter routerToURI:_ModuleA_runDirectly_ args:nil];
@@ -73,16 +81,26 @@
     NSError *e = nil;
     [YBRouter performTarget:@"ModuleA" action:@"b" args:nil error:&e];
     if (e.code == -1) { // no target
-        
+        NSLog(@"error:当前找不到target");
     }
     if (e.code == -2) { // mo method
-        
+        NSLog(@"error:当前找不到method");
     }
+    
+    //6、router_msgSend方法
+    id data = router_msgSend([ModuleA class], @selector(callClassSelector:array:dictionary:), @"testX",@[@(1),@"ahah"],@{@"name":@"Peny"});
+    NSLog(@"返回值：%@",data);
+    
 }
 
 #pragma mark - YBRouterProtocol
 - (BOOL)routerViewControllerIsPresented {
     return NO;
+}
+
+#pragma mark - YBRouterKVCProtocol
+- (NSArray<NSString *> *)routerIgnoredKeys {
+    return @[@"name"];
 }
 
 @end

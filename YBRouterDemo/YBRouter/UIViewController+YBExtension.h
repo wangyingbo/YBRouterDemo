@@ -65,8 +65,10 @@ id controllerInstance(Class cla);
 
 /**
  路由参数通过kvc赋值，只在路由跳转时使用
+
+ @param ignoredArr 需要被忽略赋值的key
  */
-- (void)setValueByKey;
+- (void)setValueByKeyWithIgnoredKeys:(NSArray<NSString *> *)ignoredArr;
 
 /**
  给只读变量赋值的方法，禁止调用此方法

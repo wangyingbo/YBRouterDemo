@@ -34,4 +34,11 @@
     
     [YBRouter routerToURI:_ModuleB_run_ args:nil];
 }
+
++ (NSNumber *)callClassSelector:(NSString *)string array:(NSArray *)array dictionary:(NSDictionary *)dictionary {
+    NSLog(@"当前类方法的参数\n参数1：%@\n参数2：%@\n参数3：%@",string,array,dictionary);
+    NSLog(@"调用类方法");
+    return @(1);
+}
+
 @end
