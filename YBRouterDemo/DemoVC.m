@@ -93,6 +93,10 @@
     
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    self.rounterCompletion(nil);
+}
+
 #pragma mark - YBRouterProtocol
 - (BOOL)routerViewControllerIsPresented {
     return NO;
@@ -102,5 +106,7 @@
 - (NSArray<NSString *> *)routerIgnoredKeys {
     return @[@"name"];
 }
+
+
 
 @end
