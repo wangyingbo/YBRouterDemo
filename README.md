@@ -1,6 +1,6 @@
 # YBRouterDemo
 
-## YBRouter路由，支持controller间和module间的跳转、传值以及回调
+## YBRouter路由，支持module模块间和controller间的跳转、传值以及回调
 
 ---
 
@@ -9,6 +9,9 @@
 - 实现一行代码自动注册路由url，生成对应的router url；
 - 在编译时进行类型检查，如果传入的不是类名则编译通不过；
 - router支持controller之间跳转、传值回调以及模块间的通信；
+
+
+### **预览图**
 
 ![screenShot](https://raw.githubusercontent.com/wangyingbo/YBRouterDemo/master/screenShot/screenShot1.png)
 
