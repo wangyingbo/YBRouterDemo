@@ -122,7 +122,7 @@ NSString *customUrl = [NSString stringWithCString:_DemoVC_URL_ encoding:NSUTF8St
 
 ### **模块间通信介绍:**
 
-- 可在.h文件里先声明注册对应的`module`和`method`，此宏会自动生成module对应的url，生成的经态常量字符串为：`_moduleName_methodName_`;
+- 可在.h文件里先声明注册对应的`module`和`method`，此宏会自动生成module对应的url，生成的静态常量字符串为：`_moduleName_methodName_`;
 
 		//自定义模块间跳转的常量路由路径uri
 		@YBRouterRegister(ModuleA, runDirectly)
