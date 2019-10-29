@@ -31,6 +31,8 @@
 /**
  1、可调用routerRegisterClass(Class cla,NSString *router)方法手动注册路由；
  2、也可以使用下面的宏自动生成常量名，在路由跳转routerControllerURI:parameter:handler:的时候会自动注册；
+    a) @YBControllerRegisterClass(args) 自动生成映射；
+    b) @YBControllerRegisterClassRouter(args,string) 自定义映射；
  */
 @YBControllerRegisterClass(DemoVC)
 @YBControllerRegisterClassRouter(DemoVC, "bapp/userInfo?userId=123&token=xxxx")
