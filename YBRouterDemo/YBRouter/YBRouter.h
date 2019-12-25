@@ -48,6 +48,7 @@ class _; static char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
 
 @interface YBRouter : NSObject
 
+#pragma mark - mudule
 + (_Nullable id)routerToURI:(YBRouterURI)URI args:(NSDictionary * _Nullable )args;
 + (id)performTarget:(NSString *)targetName action:(NSString  *)actionName args:(NSDictionary * _Nullable )args;
 + (id)performTarget:(NSString *)targetName action:(NSString *)actionName args:(NSDictionary * _Nullable )args error:(NSError ** _Nullable )error;
