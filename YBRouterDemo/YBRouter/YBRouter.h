@@ -17,7 +17,7 @@ typedef char * YBRouterURI;
 
 //校验声明controller的路由url时，传入的是否是正确的类名
 #ifndef VERIFY_CLASS
-#define VERIFY_CLASS(cla) extern cla *YBRouterVerifyClassObj;
+#define VERIFY_CLASS(cla) static void private_yb_router_verify_##cla(cla *a);
 #endif
 
 #define YBInvocatations "YBInvocatations"
