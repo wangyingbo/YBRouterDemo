@@ -36,7 +36,7 @@ class _; static char *_##cla##_##router##_ = "{\""#cla"\":\""Prefix#router"\"}";
 #define YBControllerCustomRegister(cla,Prefix,router) \
 class _; static char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
 //定义：类-自定义路由（如果需要多个前缀，可参考这个宏定义多个宏）
-#define YBControllerRegisterClassRouter(cla,router) YBControllerCustomRegister(cla,ROUTER_PREFIX,router);VERIFY_CLASS(cla);
+#define YBControllerRegisterClassRouter(cla,router) YBControllerCustomRegister(cla,"",router);VERIFY_CLASS(cla);
 
 
 //自定义路由url的前缀，可重新定义ROUTER_PREFIX实现自定义前缀

@@ -16,7 +16,9 @@
 
 
 #pragma GCC diagnostic ignored "-Wmacro-redefined"
-#define ROUTER_PREFIX "weChat://" //可自定义前缀，需要多个前缀的话可参考YBRouter.h自己定义宏
+
+//可自定义前缀，需要多个前缀的话可参考YBRouter.h自己定义宏
+#define ROUTER_PREFIX "weChat://"
 
 
 //自定义模块间跳转的常量路由路径uri
@@ -35,7 +37,7 @@
     b) @YBControllerRegisterClassRouter(args,string) 自定义映射；
  */
 @YBControllerRegisterClass(DemoVC)
-@YBControllerRegisterClassRouter(DemoVC, "bapp/userInfo?userId=123&token=xxxx")
+@YBControllerRegisterClassRouter(DemoVC, "alipay://bapp/userInfo?userId=123&token=xxxx")
 
 
 #endif /* YBRouterDefine_h */
