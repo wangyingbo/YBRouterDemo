@@ -287,7 +287,7 @@ break;                                                         \
     return [self openUrl:urlStr parameter:nil rounterCompletion:completion];
 }
 
-+ (id)openUrl:(NSString *)urlStr parameter:(id)parameter rounterCompletion:(void (^)(id))rounterCompletion {
++ (id)openUrl:(NSString *)urlStr parameter:(id)parameter rounterCompletion:(void (^)(id))routerCompletion {
     UIViewController *viewController;
     
     if ([urlStr hasPrefix:@"http://"] || [urlStr hasPrefix:@"https://"]) {
@@ -302,11 +302,11 @@ break;                                                         \
         //判断是否遵守FBRouterProtocol协议
         if ([viewController conformsToProtocol:@protocol(YBRouterProtocol)]) {
             //传参
-            [viewController configRounterString:urlStr];
-            if (parameter) { [viewController configRounterParameter:parameter]; }
+            [viewController configRouterString:urlStr];
+            if (parameter) { [viewController configRouterParameter:parameter]; }
             //回调
-            if (!rounterCompletion) { rounterCompletion = ^(id obj){}; }
-            viewController.rounterCompletion = rounterCompletion;
+            if (!routerCompletion) { routerCompletion = ^(id obj){}; }
+            viewController.routerCompletion = routerCompletion;
             //遵守FBRouterKVCProtocol协议则KVC赋值
             if ([viewController conformsToProtocol:@protocol(YBRouterKVCProtocol)]) {
                 NSArray *ignoredArr = @[];
@@ -357,13 +357,7 @@ break;                                                         \
     id  nextResponder = nil;
     UIViewController *appRootVC=window.rootViewController;
     
-    //如果是present上来的appRootVC.presentedViewController 不为nil
-    if (appRootVC.presentedViewController) {
-        nextResponder = appRootVC.presentedViewController;
-    }else{
-        UIView *frontView = [[window subviews] objectAtIndex:0];
-        nextResponder = [frontView nextResponder];
-    }
+    nextResponder = appRootVC;
     
     if ([nextResponder isKindOfClass:[UITabBarController class]]){
         UITabBarController * tabbar = (UITabBarController *)nextResponder;

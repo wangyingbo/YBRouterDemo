@@ -45,7 +45,7 @@
     
     NSLog(@"****************************************");
     NSLog(@"也可以遵守普通YBRouterProtocol协议，手动获取参数值");
-    NSDictionary *parameters = [self getRounterParameter];
+    NSDictionary *parameters = [self getRouterParameter];
     NSString *appCode = parameters[@"appCode"];
     NSString *name = parameters[@"name"];
     NSLog(@"appCode:%@",appCode);
@@ -94,7 +94,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    self.rounterCompletion(nil);
+    self.routerCompletion(nil);
 }
 
 #pragma mark - YBRouterProtocol

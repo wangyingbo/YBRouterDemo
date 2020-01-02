@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^FBRounterHandlerCompletion)(id obj);
+typedef void(^FBRouterHandlerCompletion)(id obj);
 
 @interface UIViewController (YBExtension)
 /**路由跳转的urLString*/
-@property (nonatomic, copy, readonly) NSString *rounterString;
+@property (nonatomic, copy, readonly) NSString *routerString;
 /**回调*/
-@property (nonatomic, copy) FBRounterHandlerCompletion rounterCompletion;
+@property (nonatomic, copy) FBRouterHandlerCompletion routerCompletion;
 
 /**
  工厂方法生成实例
@@ -36,7 +36,7 @@ id controllerInstance(Class cla);
 
  @return return value description
  */
-- (NSString *)getRounterString;
+- (NSString *)getRouterString;
 
 /**
  获取总的参数（同时获得路由里的参数和自定义的参数）
@@ -47,21 +47,21 @@ id controllerInstance(Class cla);
 
  @return return value description
  */
-- (id)getRounterParameter;
+- (id)getRouterParameter;
 
 /**
  获取路由string里的参数
 
  @return return value description
  */
-- (id)getRounterUrlParameter;
+- (id)getRouterUrlParameter;
 
 /**
  获取自定义传参里的参数
 
  @return return value description
  */
-- (id)getRounterCustomParameter;
+- (id)getRouterCustomParameter;
 
 /**
  路由参数通过kvc赋值，只在路由跳转时使用
@@ -75,8 +75,8 @@ id controllerInstance(Class cla);
 
  @param string string description
  */
-- (void)configRounterString:(NSString *)string;
+- (void)configRouterString:(NSString *)string;
 
-- (void)configRounterParameter:(id)rounterParameter;
+- (void)configRouterParameter:(id)routerParameter;
 
 @end

@@ -12,43 +12,43 @@
 #import "YBRouterProtocol.h"
 
 extern NSString * const kSeparareMiddleSymbol;
-static const void *rounterCompletionKey = &rounterCompletionKey;
-static const void *rounterParameterKey = &rounterParameterKey;
+static const void *routerCompletionKey = &routerCompletionKey;
+static const void *routerParameterKey = &routerParameterKey;
 
 @interface UIViewController ()
-@property (nonatomic, strong) id rounterParameter;
+@property (nonatomic, strong) id routerParameter;
 @end
 
 @implementation UIViewController (YBExtension)
-@dynamic rounterCompletion;
+@dynamic routerCompletion;
 
 #pragma mark - rounterString
-static char rounterStringKey;
-- (NSString *)rounterString
+static char routerStringKey;
+- (NSString *)routerString
 {
-    return objc_getAssociatedObject(self, &rounterStringKey);
+    return objc_getAssociatedObject(self, &routerStringKey);
 }
 
-- (void)setRounterString:(NSString *)rounterString {
-    objc_setAssociatedObject(self, &rounterStringKey, rounterString, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setRouterString:(NSString *)rounterString {
+    objc_setAssociatedObject(self, &routerStringKey, rounterString, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 #pragma mark - rounterParameter
-- (id)rounterParameter {
-    return objc_getAssociatedObject(self, &rounterParameterKey);
+- (id)routerParameter {
+    return objc_getAssociatedObject(self, &routerParameterKey);
 }
 
-- (void)setRounterParameter:(id)rounterParameter {
-    objc_setAssociatedObject(self, &rounterParameterKey, rounterParameter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setRouterParameter:(id)rounterParameter {
+    objc_setAssociatedObject(self, &routerParameterKey, rounterParameter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - rounterCompletion
-- (FBRounterHandlerCompletion)rounterCompletion {
-    return objc_getAssociatedObject(self, rounterCompletionKey);
+- (FBRouterHandlerCompletion)routerCompletion {
+    return objc_getAssociatedObject(self, routerCompletionKey);
 }
 
-- (void)setRounterCompletion:(FBRounterHandlerCompletion)rounterCompletion {
-    objc_setAssociatedObject(self, rounterCompletionKey, rounterCompletion, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setRouterCompletion:(FBRouterHandlerCompletion)routerCompletion {
+    objc_setAssociatedObject(self, routerCompletionKey, routerCompletion, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 #pragma mark - factory
@@ -63,11 +63,11 @@ id controllerInstance(Class class) {
 
 #pragma mark - public
 
-- (NSString *)getRounterString {
-    NSArray *array = [self.rounterString componentsSeparatedByString:kSeparareMiddleSymbol];
+- (NSString *)getRouterString {
+    NSArray *array = [self.routerString componentsSeparatedByString:kSeparareMiddleSymbol];
     NSString *rounter = @"";
     if (array.count < 2) {
-        rounter = self.rounterString;
+        rounter = self.routerString;
     }else {
         rounter = [array firstObject];
     }
@@ -75,49 +75,49 @@ id controllerInstance(Class class) {
     return rounter;
 }
 
-- (id)getRounterParameter {
+- (id)getRouterParameter {
     NSAssert([self conformsToProtocol:@protocol(YBRouterProtocol)] || [self conformsToProtocol:@protocol(YBRouterKVCProtocol)], @"没有遵守路由协议");
-    id obj = [YBRouterTool decodeRounterWithRounter:self.rounterString];
+    id obj = [YBRouterTool decodeRounterWithRounter:self.routerString];
     
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
-    if (self.rounterParameter) {
-        if ([self.rounterParameter isKindOfClass:[NSDictionary class]]) {
-            [mutDic addEntriesFromDictionary:self.rounterParameter];
+    if (self.routerParameter) {
+        if ([self.routerParameter isKindOfClass:[NSDictionary class]]) {
+            [mutDic addEntriesFromDictionary:self.routerParameter];
         }else {
-            [mutDic setObject:self.rounterParameter forKey:kYBRouterCustomParameterKey];
+            [mutDic setObject:self.routerParameter forKey:kYBRouterCustomParameterKey];
         }
     }
     return mutDic.copy;
 }
 
-- (id)getRounterUrlParameter {
-    if (![self getRounterParameter]) {
+- (id)getRouterUrlParameter {
+    if (![self getRouterParameter]) {
         return nil;
     }
-    return [self getRounterParameter][kYBRouterUrlParameterKey];
+    return [self getRouterParameter][kYBRouterUrlParameterKey];
 }
 
-- (id)getRounterCustomParameter {
-    if (self.rounterParameter) {
-        return self.rounterParameter;
+- (id)getRouterCustomParameter {
+    if (self.routerParameter) {
+        return self.routerParameter;
     }
-    if (![self getRounterParameter]) {
+    if (![self getRouterParameter]) {
         return nil;
     }
-    return [self getRounterParameter][kYBRouterCustomParameterKey];
+    return [self getRouterParameter][kYBRouterCustomParameterKey];
 }
 
-- (void)configRounterString:(NSString *)string {
-    self.rounterString = string;
+- (void)configRouterString:(NSString *)string {
+    self.routerString = string;
 }
 
-- (void)configRounterParameter:(id)rounterParameter {
-    self.rounterParameter = rounterParameter;
+- (void)configRouterParameter:(id)routerParameter {
+    self.routerParameter = routerParameter;
 }
 
 #pragma mark - kvc method
 - (void)setValueByKeyWithIgnoredKeys:(NSArray<NSString *> *)ignoredArr {
-    NSDictionary *dic = [self getRounterParameter];
+    NSDictionary *dic = [self getRouterParameter];
     if (!dic){ return; }
     [dic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         //[self respondsToSelector:NSSelectorFromString(key)]
