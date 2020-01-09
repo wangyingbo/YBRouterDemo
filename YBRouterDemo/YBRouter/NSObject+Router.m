@@ -1,12 +1,12 @@
 //
-//  UIViewController+YBExtension.m
-//  FengbangB
+//  NSObject+Router.m
+//  YBRouterDemo
 //
-//  Created by 王迎博 on 2018/6/15.
-//  Copyright © 2018年 com.fengbangstore. All rights reserved.
+//  Created by fengbang on 2020/1/9.
+//  Copyright © 2020 王颖博. All rights reserved.
 //
 
-#import "UIViewController+YBExtension.h"
+#import "NSObject+Router.h"
 #import <objc/runtime.h>
 #import "YBRouterTool.h"
 #import "YBRouterProtocol.h"
@@ -15,11 +15,13 @@ extern NSString * const kSeparareMiddleSymbol;
 static const void *routerCompletionKey = &routerCompletionKey;
 static const void *routerParameterKey = &routerParameterKey;
 
-@interface UIViewController ()
+@interface NSObject ()
 @property (nonatomic, strong) id routerParameter;
+
 @end
 
-@implementation UIViewController (YBExtension)
+@implementation NSObject (Router)
+
 @dynamic routerCompletion;
 
 #pragma mark - rounterString
@@ -57,7 +59,7 @@ static char routerStringKey;
     return [[class alloc] init];
 }
 
-id controllerInstance(Class class) {
+id objectInstance(Class class) {
     return [[class alloc] init];
 }
 
@@ -170,5 +172,4 @@ id controllerInstance(Class class) {
     NSAssert(NO, des);
     return nil;
 }
-
 @end

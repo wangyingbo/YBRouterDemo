@@ -10,7 +10,7 @@
 #ifndef YBRouterHeader_h
 #define YBRouterHeader_h
 
-#import "UIViewController+YBExtension.h"
+#import "NSObject+Router.h"
 #import "YBRouterProtocol.h"
 #import "YBRouterTool.h"
 #import "YBRouter.h"

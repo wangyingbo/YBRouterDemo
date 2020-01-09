@@ -9,7 +9,6 @@
 
 #import "YBRouterFunctions.h"
 #import "YBRouterTool.h"
-#import "UIViewController+YBExtension.h"
 
 @interface YBRouterFunctions ()
 @property (nonatomic, strong) NSMutableDictionary *rounterClassMutDic;
@@ -59,7 +58,7 @@ inline id getController(NSString *router) {
     NSString *claStr = [YBRouterFunctions getClassWithRounter:router];
     if (!claStr) { return nil; }
     
-    return controllerInstance(NSClassFromString(claStr));
+    return objectInstance(NSClassFromString(claStr));
 }
 
 + (id)getControllerWithRouter:(NSString *)router {
@@ -68,7 +67,7 @@ inline id getController(NSString *router) {
     NSString *claStr = [self getClassWithRounter:router];
     if (!claStr) { return nil; }
     
-    return controllerInstance(NSClassFromString(claStr));
+    return objectInstance(NSClassFromString(claStr));
 }
 
 

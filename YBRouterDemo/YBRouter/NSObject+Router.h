@@ -1,16 +1,18 @@
 //
-//  UIViewController+YBExtension.h
-//  FengbangB
+//  NSObject+Router.h
+//  YBRouterDemo
 //
-//  Created by 王迎博 on 2018/6/15.
-//  Copyright © 2018年 com.fengbangstore. All rights reserved.
+//  Created by fengbang on 2020/1/9.
+//  Copyright © 2020 王颖博. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^FBRouterHandlerCompletion)(id obj);
 
-@interface UIViewController (YBExtension)
+@interface NSObject (Router)
 /**路由跳转的urLString*/
 @property (nonatomic, copy, readonly) NSString *routerString;
 /**回调*/
@@ -29,7 +31,7 @@ typedef void(^FBRouterHandlerCompletion)(id obj);
  @param cla  类class
  @return instance 实例
  */
-id controllerInstance(Class cla);
+id objectInstance(Class cla);
 
 /**
  获取路由string
@@ -78,5 +80,6 @@ id controllerInstance(Class cla);
 - (void)configRouterString:(NSString *)string;
 
 - (void)configRouterParameter:(id)routerParameter;
-
 @end
+
+NS_ASSUME_NONNULL_END

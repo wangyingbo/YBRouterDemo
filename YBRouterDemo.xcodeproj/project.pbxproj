@@ -15,7 +15,6 @@
 		D148D4E8235063C800D9E933 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D4E7235063C800D9E933 /* main.m */; };
 		D148D4F2235063C800D9E933 /* YBRouterDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D4F1235063C800D9E933 /* YBRouterDemoTests.m */; };
 		D148D4FD235063C800D9E933 /* YBRouterDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D4FC235063C800D9E933 /* YBRouterDemoUITests.m */; };
-		D148D516235064D300D9E933 /* UIViewController+YBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D512235064D300D9E933 /* UIViewController+YBExtension.m */; };
 		D148D517235064D300D9E933 /* YBRouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D513235064D300D9E933 /* YBRouterTool.m */; };
 		D148D518235064D300D9E933 /* NSString+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D514235064D300D9E933 /* NSString+JSON.m */; };
 		D148D519235064D300D9E933 /* YBRouterFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D515235064D300D9E933 /* YBRouterFunctions.m */; };
@@ -23,6 +22,7 @@
 		D148D521235071BF00D9E933 /* DemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D520235071BF00D9E933 /* DemoVC.m */; };
 		D148D524235071DC00D9E933 /* ModuleA.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D523235071DC00D9E933 /* ModuleA.m */; };
 		D148D527235071F300D9E933 /* ModuleB.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D526235071F300D9E933 /* ModuleB.m */; };
+		D179D56D23C6F7740087B713 /* NSObject+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = D179D56C23C6F7740087B713 /* NSObject+Router.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,11 +62,9 @@
 		D148D50A235063EE00D9E933 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D148D50C235064D200D9E933 /* NSString+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSON.h"; sourceTree = "<group>"; };
 		D148D50D235064D200D9E933 /* YBRouterFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRouterFunctions.h; sourceTree = "<group>"; };
-		D148D50E235064D200D9E933 /* UIViewController+YBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YBExtension.h"; sourceTree = "<group>"; };
 		D148D50F235064D200D9E933 /* YBRouterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRouterProtocol.h; sourceTree = "<group>"; };
 		D148D510235064D300D9E933 /* YBRouterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRouterTool.h; sourceTree = "<group>"; };
 		D148D511235064D300D9E933 /* YBRouterHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRouterHeader.h; sourceTree = "<group>"; };
-		D148D512235064D300D9E933 /* UIViewController+YBExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YBExtension.m"; sourceTree = "<group>"; };
 		D148D513235064D300D9E933 /* YBRouterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRouterTool.m; sourceTree = "<group>"; };
 		D148D514235064D300D9E933 /* NSString+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSON.m"; sourceTree = "<group>"; };
 		D148D515235064D300D9E933 /* YBRouterFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRouterFunctions.m; sourceTree = "<group>"; };
@@ -80,6 +78,8 @@
 		D148D523235071DC00D9E933 /* ModuleA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleA.m; sourceTree = "<group>"; };
 		D148D525235071F300D9E933 /* ModuleB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleB.h; sourceTree = "<group>"; };
 		D148D526235071F300D9E933 /* ModuleB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleB.m; sourceTree = "<group>"; };
+		D179D56B23C6F7740087B713 /* NSObject+Router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Router.h"; sourceTree = "<group>"; };
+		D179D56C23C6F7740087B713 /* NSObject+Router.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Router.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +184,8 @@
 				D148D513235064D300D9E933 /* YBRouterTool.m */,
 				D148D50C235064D200D9E933 /* NSString+JSON.h */,
 				D148D514235064D300D9E933 /* NSString+JSON.m */,
-				D148D50E235064D200D9E933 /* UIViewController+YBExtension.h */,
-				D148D512235064D300D9E933 /* UIViewController+YBExtension.m */,
+				D179D56B23C6F7740087B713 /* NSObject+Router.h */,
+				D179D56C23C6F7740087B713 /* NSObject+Router.m */,
 			);
 			path = YBRouter;
 			sourceTree = "<group>";
@@ -325,9 +325,9 @@
 				D148D518235064D300D9E933 /* NSString+JSON.m in Sources */,
 				D148D521235071BF00D9E933 /* DemoVC.m in Sources */,
 				D148D517235064D300D9E933 /* YBRouterTool.m in Sources */,
-				D148D516235064D300D9E933 /* UIViewController+YBExtension.m in Sources */,
 				D148D4E8235063C800D9E933 /* main.m in Sources */,
 				D148D4DA235063C700D9E933 /* AppDelegate.m in Sources */,
+				D179D56D23C6F7740087B713 /* NSObject+Router.m in Sources */,
 				D148D519235064D300D9E933 /* YBRouterFunctions.m in Sources */,
 				D148D524235071DC00D9E933 /* ModuleA.m in Sources */,
 				D148D527235071F300D9E933 /* ModuleB.m in Sources */,
