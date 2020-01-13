@@ -20,6 +20,7 @@ NSString * const kYBRouterSpecialSymbol = @"?";
 + (NSString *)encodeRounterWithPreRounter:(NSString *)preRounter param:(id)param {
     NSString *result;
     NSAssert((preRounter), @"路由前缀字符不能为空");
+    if (!preRounter) { preRounter = @""; }
     if (!param) { return preRounter; }
     NSString *json = [NSString jsonStringWithObject:param];
     result = [NSString stringWithFormat:@"%@%@%@",preRounter,(json?kSeparareMiddleSymbol:@""),(json?json:@"")];
@@ -28,6 +29,7 @@ NSString * const kYBRouterSpecialSymbol = @"?";
 
 + (id)decodeRounterWithRounter:(NSString *)rounter {
     NSAssert(rounter, @"解析参数rounter不能为空");
+    if (!rounter) { rounter = @""; }
     NSArray *array = [rounter componentsSeparatedByString:kSeparareMiddleSymbol];
     if (array.count<2) {
         NSMutableDictionary *mutRounterDic = [self getURLParameters:rounter];
