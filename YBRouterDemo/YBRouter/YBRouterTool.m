@@ -1,5 +1,5 @@
 //
-//  FBRounterTool.m
+//  FBRouterTool.m
 //  FengbangB
 //
 //  Created by 王迎博 on 2018/6/15.
@@ -28,24 +28,24 @@ NSString * const kYBRouterSpecialSymbol = @"?";
 }
 
 + (id)decodeRouterWithRouter:(NSString *)router {
-    NSAssert(router, @"解析参数rounter不能为空");
+    NSAssert(router, @"解析参数router不能为空");
     if (!router) { router = @""; }
     NSArray *array = [router componentsSeparatedByString:kSeparareMiddleSymbol];
     if (array.count<2) {
-        NSMutableDictionary *mutRounterDic = [self getURLParameters:router];
-        return mutRounterDic.copy;
+        NSMutableDictionary *mutRouterDic = [self getURLParameters:router];
+        return mutRouterDic.copy;
     }
     
-    NSString *preRounter = [array firstObject];
-    NSMutableDictionary *mutRounterDic = [self getURLParameters:preRounter];
+    NSString *preRouter = [array firstObject];
+    NSMutableDictionary *mutRouterDic = [self getURLParameters:preRouter];
     NSMutableArray *mutArr = [NSMutableArray arrayWithArray:array];
     [mutArr removeObjectAtIndex:0];
     NSString *json = [mutArr componentsJoinedByString:kSeparareMiddleSymbol];
     id customResultParam = [NSString jsonParseJSONStringToObj:json];
     
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
-    if (mutRounterDic) {
-        [result setObject:mutRounterDic forKey:kYBRouterUrlParameterKey];
+    if (mutRouterDic) {
+        [result setObject:mutRouterDic forKey:kYBRouterUrlParameterKey];
     }
     if (customResultParam) {
         [result setObject:customResultParam forKey:kYBRouterCustomParameterKey];
@@ -55,8 +55,8 @@ NSString * const kYBRouterSpecialSymbol = @"?";
     if ([customResultParam isKindOfClass:[NSDictionary class]]) {
         [result addEntriesFromDictionary:customResultParam];
     }
-    if (mutRounterDic) {
-        [result addEntriesFromDictionary:mutRounterDic];
+    if (mutRouterDic) {
+        [result addEntriesFromDictionary:mutRouterDic];
     }
     
     return result.copy;

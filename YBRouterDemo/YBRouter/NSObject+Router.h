@@ -43,9 +43,9 @@ id objectInstance(Class cla);
 /**
  获取总的参数（同时获得路由里的参数和自定义的参数）
  1、若同时有值，则调用：
-    NSDictionary *obj = [self getRounterParameter];
-    用obj[kFBRounterCustomParameterKey]取得路由参数；
-    用obj[kFBRounterCustomParameterKey]取得自定义的参数；
+    NSDictionary *obj = [self getRouterParameter];
+    用obj[kFBRouterCustomParameterKey]取得路由参数；
+    用obj[kFBRouterCustomParameterKey]取得自定义的参数；
 
  @return return value description
  */

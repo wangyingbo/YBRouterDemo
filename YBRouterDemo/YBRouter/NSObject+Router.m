@@ -24,27 +24,27 @@ static const void *routerParameterKey = &routerParameterKey;
 
 @dynamic routerCompletion;
 
-#pragma mark - rounterString
+#pragma mark - routerString
 static char routerStringKey;
 - (NSString *)routerString
 {
     return objc_getAssociatedObject(self, &routerStringKey);
 }
 
-- (void)setRouterString:(NSString *)rounterString {
-    objc_setAssociatedObject(self, &routerStringKey, rounterString, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setRouterString:(NSString *)routerString {
+    objc_setAssociatedObject(self, &routerStringKey, routerString, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-#pragma mark - rounterParameter
+#pragma mark - routerParameter
 - (id)routerParameter {
     return objc_getAssociatedObject(self, &routerParameterKey);
 }
 
-- (void)setRouterParameter:(id)rounterParameter {
-    objc_setAssociatedObject(self, &routerParameterKey, rounterParameter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setRouterParameter:(id)routerParameter {
+    objc_setAssociatedObject(self, &routerParameterKey, routerParameter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-#pragma mark - rounterCompletion
+#pragma mark - routerCompletion
 - (FBRouterHandlerCompletion)routerCompletion {
     return objc_getAssociatedObject(self, routerCompletionKey);
 }
@@ -67,14 +67,14 @@ id objectInstance(Class class) {
 
 - (NSString *)getRouterString {
     NSArray *array = [self.routerString componentsSeparatedByString:kSeparareMiddleSymbol];
-    NSString *rounter = @"";
+    NSString *router = @"";
     if (array.count < 2) {
-        rounter = self.routerString;
+        router = self.routerString;
     }else {
-        rounter = [array firstObject];
+        router = [array firstObject];
     }
     
-    return rounter;
+    return router;
 }
 
 - (id)getRouterParameter {

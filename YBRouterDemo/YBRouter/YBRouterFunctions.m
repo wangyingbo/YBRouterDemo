@@ -1,5 +1,5 @@
 //
-//  FBRounter.m
+//  FBRouter.m
 //  FengbangB
 //
 //  Created by fengbang on 2018/7/16.
@@ -11,19 +11,19 @@
 #import "YBRouterTool.h"
 
 @interface YBRouterFunctions ()
-@property (nonatomic, strong) NSMutableDictionary *rounterClassMutDic;
+@property (nonatomic, strong) NSMutableDictionary *routerClassMutDic;
 @end
 
 @implementation YBRouterFunctions
 
 SingletonM(Router)
 
-- (NSMutableDictionary *)rounterClassMutDic {
-    if (!_rounterClassMutDic) {
+- (NSMutableDictionary *)routerClassMutDic {
+    if (!_routerClassMutDic) {
         NSMutableDictionary *mutDic = [NSMutableDictionary dictionary];
-        _rounterClassMutDic = mutDic;
+        _routerClassMutDic = mutDic;
     }
-    return _rounterClassMutDic;
+    return _routerClassMutDic;
 }
 
 inline bool routerRegisterClass(Class cla,NSString *router) {
@@ -35,7 +35,7 @@ inline bool routerRegisterClass(Class cla,NSString *router) {
     NSArray *urlArr = [router componentsSeparatedByString:kYBRouterSpecialSymbol];
     if (urlArr.count<1) { return NO; }
     NSString *fb_preUrlStr = [urlArr firstObject];
-    [[YBRouterFunctions sharedRouter].rounterClassMutDic setObject:NSStringFromClass(cla) forKey:fb_preUrlStr];
+    [[YBRouterFunctions sharedRouter].routerClassMutDic setObject:NSStringFromClass(cla) forKey:fb_preUrlStr];
     
     return true;
 }
@@ -47,7 +47,7 @@ inline bool routerRegisterClass(Class cla,NSString *router) {
     if (urlArr.count<1) { return NO; }
     NSString *fb_preUrlStr = [urlArr firstObject];
     
-    [[YBRouterFunctions sharedRouter].rounterClassMutDic setObject:NSStringFromClass(cla) forKey:fb_preUrlStr];
+    [[YBRouterFunctions sharedRouter].routerClassMutDic setObject:NSStringFromClass(cla) forKey:fb_preUrlStr];
     
     return YES;
 }
@@ -55,7 +55,7 @@ inline bool routerRegisterClass(Class cla,NSString *router) {
 inline id getController(NSString *router) {
     if (!router) { return nil; }
     
-    NSString *claStr = [YBRouterFunctions getClassWithRounter:router];
+    NSString *claStr = [YBRouterFunctions getClassWithRouter:router];
     if (!claStr) { return nil; }
     
     return objectInstance(NSClassFromString(claStr));
@@ -64,7 +64,7 @@ inline id getController(NSString *router) {
 + (id)getControllerWithRouter:(NSString *)router {
     if (!router) { return nil; }
     
-    NSString *claStr = [self getClassWithRounter:router];
+    NSString *claStr = [self getClassWithRouter:router];
     if (!claStr) { return nil; }
     
     return objectInstance(NSClassFromString(claStr));
@@ -74,18 +74,18 @@ inline id getController(NSString *router) {
 /**
  获取路由对应的class
 
- @param rounter 路由
+ @param router 路由
  @return 类名
  */
-+ (id)getClassWithRounter:(NSString *)rounter {
++ (id)getClassWithRouter:(NSString *)router {
     id obj;
-    if (!rounter) { return obj; }
+    if (!router) { return obj; }
     
-    NSArray *urlArr = [rounter componentsSeparatedByString:kYBRouterSpecialSymbol];
+    NSArray *urlArr = [router componentsSeparatedByString:kYBRouterSpecialSymbol];
     if (urlArr.count<1) { return obj; }
     NSString *fb_preUrlStr = [urlArr firstObject];
     
-    obj = [[YBRouterFunctions sharedRouter].rounterClassMutDic objectForKey:fb_preUrlStr];
+    obj = [[YBRouterFunctions sharedRouter].routerClassMutDic objectForKey:fb_preUrlStr];
     
     return obj;
 }

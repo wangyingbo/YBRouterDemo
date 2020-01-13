@@ -273,19 +273,19 @@ break;                                                         \
 
 #pragma mark -
 + (id)openControllerUrl:(NSString *)router parameter:(id)parameter completion:(RouterCallBackHandler)completion {
-    NSAssert((router), @"rounter不能为空");
+    NSAssert((router), @"router不能为空");
     if (!router) { return nil; }
-    return [self openUrl:router parameter:parameter rounterCompletion:completion];
+    return [self openUrl:router parameter:parameter routerCompletion:completion];
 }
 
 + (id)openControllerUrl:(NSString *)router jsonObj:(id)jsonObj completion:(RouterCallBackHandler)completion {
-    NSAssert((router), @"rounter不能为空");
+    NSAssert((router), @"router不能为空");
     if (!router) { return nil; }
     NSString *urlStr = jsonObj?[YBRouterTool encodeRouterWithPreRouter:router param:jsonObj]:router;
-    return [self openUrl:urlStr parameter:nil rounterCompletion:completion];
+    return [self openUrl:urlStr parameter:nil routerCompletion:completion];
 }
 
-+ (id)openUrl:(NSString *)urlStr parameter:(id)parameter rounterCompletion:(void (^)(id))routerCompletion {
++ (id)openUrl:(NSString *)urlStr parameter:(id)parameter routerCompletion:(void (^)(id))routerCompletion {
     UIViewController *viewController;
     
     if ([urlStr hasPrefix:@"http://"] || [urlStr hasPrefix:@"https://"]) {
