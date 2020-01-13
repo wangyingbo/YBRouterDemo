@@ -17,22 +17,22 @@ NSString * const kYBRouterSpecialSymbol = @"?";
 @implementation YBRouterTool
 
 #pragma mark - public
-+ (NSString *)encodeRounterWithPreRounter:(NSString *)preRounter param:(id)param {
++ (NSString *)encodeRouterWithPreRouter:(NSString *)preRouter param:(id)param {
     NSString *result;
-    NSAssert((preRounter), @"路由前缀字符不能为空");
-    if (!preRounter) { preRounter = @""; }
-    if (!param) { return preRounter; }
+    NSAssert((preRouter), @"路由前缀字符不能为空");
+    if (!preRouter) { preRouter = @""; }
+    if (!param) { return preRouter; }
     NSString *json = [NSString jsonStringWithObject:param];
-    result = [NSString stringWithFormat:@"%@%@%@",preRounter,(json?kSeparareMiddleSymbol:@""),(json?json:@"")];
+    result = [NSString stringWithFormat:@"%@%@%@",preRouter,(json?kSeparareMiddleSymbol:@""),(json?json:@"")];
     return result;
 }
 
-+ (id)decodeRounterWithRounter:(NSString *)rounter {
-    NSAssert(rounter, @"解析参数rounter不能为空");
-    if (!rounter) { rounter = @""; }
-    NSArray *array = [rounter componentsSeparatedByString:kSeparareMiddleSymbol];
++ (id)decodeRouterWithRouter:(NSString *)router {
+    NSAssert(router, @"解析参数rounter不能为空");
+    if (!router) { router = @""; }
+    NSArray *array = [router componentsSeparatedByString:kSeparareMiddleSymbol];
     if (array.count<2) {
-        NSMutableDictionary *mutRounterDic = [self getURLParameters:rounter];
+        NSMutableDictionary *mutRounterDic = [self getURLParameters:router];
         return mutRounterDic.copy;
     }
     

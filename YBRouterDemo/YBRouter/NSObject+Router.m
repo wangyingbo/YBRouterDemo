@@ -79,7 +79,7 @@ id objectInstance(Class class) {
 
 - (id)getRouterParameter {
     NSAssert([self conformsToProtocol:@protocol(YBRouterProtocol)] || [self conformsToProtocol:@protocol(YBRouterKVCProtocol)], @"没有遵守路由协议");
-    id obj = [YBRouterTool decodeRounterWithRounter:self.routerString];
+    id obj = [YBRouterTool decodeRouterWithRouter:self.routerString];
     
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
     if (self.routerParameter) {

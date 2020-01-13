@@ -281,7 +281,7 @@ break;                                                         \
 + (id)openControllerUrl:(NSString *)router jsonObj:(id)jsonObj completion:(RouterCallBackHandler)completion {
     NSAssert((router), @"rounter不能为空");
     if (!router) { return nil; }
-    NSString *urlStr = jsonObj?[YBRouterTool encodeRounterWithPreRounter:router param:jsonObj]:router;
+    NSString *urlStr = jsonObj?[YBRouterTool encodeRouterWithPreRouter:router param:jsonObj]:router;
     return [self openUrl:urlStr parameter:nil rounterCompletion:completion];
 }
 
