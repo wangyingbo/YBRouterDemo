@@ -28,14 +28,14 @@ class _; static char *_##target##_##method##_ KSDATA(YBInvocatations) = "{\""#ta
 
 //basic定义：类-前缀-路由
 #define YBControllerRegister(cla,Prefix,router) \
-class _; static char *_##cla##_##router##_ = "{\""#cla"\":\""Prefix#router"\"}";
+class _; static const char *_##cla##_##router##_ = "{\""#cla"\":\""Prefix#router"\"}";
 //定义：类-默认类名即路由
 #define YBControllerRegisterClass(cla) YBControllerRegister(cla,ROUTER_PREFIX,cla);VERIFY_CLASS(cla);
 
 
 //basic定义：类-自定义路由
 #define YBControllerCustomRegister(cla,Prefix,router) \
-class _; static char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
+class _; static const char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
 //定义：类-自定义路由（如果需要多个前缀，可参考这个宏定义多个宏）
 #define YBControllerRegisterClassRouter(cla,router) YBControllerCustomRegister(cla,"",router);VERIFY_CLASS(cla);
 
