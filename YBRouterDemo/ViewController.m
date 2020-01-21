@@ -32,7 +32,9 @@
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionary];
     [mutDic setObject:@"123456" forKey:@"appCode"];
     [mutDic setObject:@"JackMa" forKey:@"name"];
-    [YBRouter routerControllerURI:_DemoVC_URL_ parameter:mutDic.copy handler:nil];
+    //[YBRouter routerControllerURI:_DemoVC_DemoVC_ parameter:mutDic.copy handler:nil];
+    //[YBRouter routerControllerURI:_DemoVC_URL_ parameter:mutDic.copy handler:nil];
+    [YBRouter routerControllerURI:kRouterServerDemoVC.UTF8String parameter:mutDic.copy handler:nil];
 }
 
 @end

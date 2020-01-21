@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^RouterCallBackHandler)(id obj);
 
-typedef char * YBRouterURI;
+typedef const char * YBRouterURI;
 
 //校验声明controller的路由url时，传入的是否是正确的类名
 #ifndef VERIFY_CLASS

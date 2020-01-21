@@ -15,5 +15,6 @@
 #import "YBRouterTool.h"
 #import "YBRouter.h"
 #import "YBRouterMacro.h"
+#import "YBRouterFunctions.h"
 
 #endif /* YBRouterHeader_h */

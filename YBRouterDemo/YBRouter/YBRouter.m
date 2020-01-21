@@ -260,16 +260,15 @@ id getJsonObjWithURI(YBRouterURI URI) {
     NSString *urlString = [jsonDic allValues][0];//拿到注册的url
     NSString *claString = [jsonDic allKeys][0];
     if (!urlString || !claString) {
-        return nil;
+        return [YBRouter openControllerUrl:[NSString stringWithCString:URI encoding:NSUTF8StringEncoding] parameter:parameter completion:handler];
+    }else {
+        Class cla = NSClassFromString(claString);
+        NSAssert(cla, @"is not a class");
+        if (cla && ([cla isKindOfClass:[NSObject class]] || [cla isKindOfClass:[NSProxy class]])) {
+            routerRegisterClass(cla, urlString);
+            return [YBRouter openControllerUrl:urlString parameter:parameter completion:handler];
+        }
     }
-    
-    Class cla = NSClassFromString(claString);
-    NSAssert(cla, @"is not a class");
-    if (cla && ([cla isKindOfClass:[NSObject class]] || [cla isKindOfClass:[NSProxy class]])) {
-        routerRegisterClass(cla, urlString);
-        return [YBRouter openControllerUrl:urlString parameter:parameter completion:handler];
-    }
-    
     
     return controller;
 }
