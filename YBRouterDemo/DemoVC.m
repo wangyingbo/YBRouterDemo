@@ -30,6 +30,10 @@
     [self configModuleRouter];
 }
 
+- (void)dealloc {
+    NSLog(@"%@", [NSString stringWithFormat:@"<class:%@> dealloc !!!",NSStringFromClass(self.class)]);
+}
+
 #pragma mark - configData
 
 /**
@@ -53,7 +57,6 @@
     
     NSLog(@"****************************************");
     NSLog(@"总的参数字典:%@",parameters);
-    
     NSLog(@"****************************************");
 }
 

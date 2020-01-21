@@ -5,6 +5,7 @@
 //  Created by fengbang on 2019/10/11.
 //  Copyright © 2019 王颖博. All rights reserved.
 //
+//  base on KSRouter
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -27,17 +28,17 @@ typedef char * YBRouterURI;
 class _; static char *_##target##_##method##_ KSDATA(YBInvocatations) = "{\""#target"\":\""#method"\"}";
 
 //basic定义：类-前缀-路由
-#define YBControllerRegister(cla,Prefix,router) \
+#define YBBaseControllerRegister(cla,Prefix,router) \
 class _; static const char *_##cla##_##router##_ = "{\""#cla"\":\""Prefix#router"\"}";
 //定义：类-默认类名即路由
-#define YBControllerRegisterClass(cla) YBControllerRegister(cla,ROUTER_PREFIX,cla);VERIFY_CLASS(cla);
+#define YBControllerRegisterClass(cla) YBBaseControllerRegister(cla,ROUTER_PREFIX,cla);VERIFY_CLASS(cla);
 
 
 //basic定义：类-自定义路由
-#define YBControllerCustomRegister(cla,Prefix,router) \
+#define YBBaseControllerCustomRegister(cla,Prefix,router) \
 class _; static const char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
 //定义：类-自定义路由（如果需要多个前缀，可参考这个宏定义多个宏）
-#define YBControllerRegisterClassRouter(cla,router) YBControllerCustomRegister(cla,"",router);VERIFY_CLASS(cla);
+#define YBControllerRegisterClassRouter(cla,router) YBBaseControllerCustomRegister(cla,"",router);VERIFY_CLASS(cla);
 
 
 //自定义路由url的前缀，可重新定义ROUTER_PREFIX实现自定义前缀

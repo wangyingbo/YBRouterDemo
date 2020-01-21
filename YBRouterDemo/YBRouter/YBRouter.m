@@ -236,7 +236,7 @@ break;                                                         \
     return returnValue;
 }
 
-+ (id)getRouterUrlWithURI:(YBRouterURI)URI {
+id getJsonObjWithURI(YBRouterURI URI) {
     NSString *uri = [NSString stringWithCString:URI encoding:NSUTF8StringEncoding];
     NSData *jsonData =  [uri dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
@@ -246,7 +246,11 @@ break;                                                         \
             return json;
         }
     }
-    return nil;
+    return json;
+}
+
++ (id)getRouterUrlWithURI:(YBRouterURI)URI {
+    return getJsonObjWithURI(URI);
 }
 
 #pragma mark -
