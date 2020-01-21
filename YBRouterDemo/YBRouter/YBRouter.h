@@ -17,6 +17,14 @@ typedef void(^RouterCallBackHandler)(id obj);
 
 typedef const char * YBRouterURI;
 
+#ifndef GET_CLASS
+//做(NSString*)(args *)转换是为了保证args是类名
+#define GET_CLASS(args) NSClassFromString((NSString*)(args *)[NSString stringWithCString:#args encoding:NSUTF8StringEncoding])
+#endif
+#ifndef YBCLASS
+#define YBCLASS(args) GET_CLASS(args)
+#endif
+
 //校验声明controller的路由url时，传入的是否是正确的类名
 #ifndef VERIFY_CLASS
 #define VERIFY_CLASS(cla) extern void private_yb_router_verify_##cla(cla *a);
