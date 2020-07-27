@@ -24,6 +24,7 @@
 		D148D524235071DC00D9E933 /* ModuleA.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D523235071DC00D9E933 /* ModuleA.m */; };
 		D148D527235071F300D9E933 /* ModuleB.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D526235071F300D9E933 /* ModuleB.m */; };
 		D179D56D23C6F7740087B713 /* NSObject+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = D179D56C23C6F7740087B713 /* NSObject+Router.m */; };
+		D1B161DD24CEADBA00BA2DC7 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B161DC24CEADBA00BA2DC7 /* TestVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		D148D526235071F300D9E933 /* ModuleB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleB.m; sourceTree = "<group>"; };
 		D179D56B23C6F7740087B713 /* NSObject+Router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Router.h"; sourceTree = "<group>"; };
 		D179D56C23C6F7740087B713 /* NSObject+Router.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Router.m"; sourceTree = "<group>"; };
+		D1B161DB24CEADBA00BA2DC7 /* TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
+		D1B161DC24CEADBA00BA2DC7 /* TestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				D148D4DC235063C700D9E933 /* ViewController.m */,
 				D148D51F235071BF00D9E933 /* DemoVC.h */,
 				D148D520235071BF00D9E933 /* DemoVC.m */,
+				D1B161DB24CEADBA00BA2DC7 /* TestVC.h */,
+				D1B161DC24CEADBA00BA2DC7 /* TestVC.m */,
 				D148D522235071DC00D9E933 /* ModuleA.h */,
 				D148D523235071DC00D9E933 /* ModuleA.m */,
 				D148D525235071F300D9E933 /* ModuleB.h */,
@@ -335,6 +340,7 @@
 				D148D519235064D300D9E933 /* YBRouterFunctions.m in Sources */,
 				D148D524235071DC00D9E933 /* ModuleA.m in Sources */,
 				D148D527235071F300D9E933 /* ModuleB.m in Sources */,
+				D1B161DD24CEADBA00BA2DC7 /* TestVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

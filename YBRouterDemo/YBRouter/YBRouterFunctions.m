@@ -35,21 +35,17 @@ inline bool routerRegisterClass(Class cla,NSString *router) {
     NSArray *urlArr = [router componentsSeparatedByString:kYBRouterSpecialSymbol];
     if (urlArr.count<1) { return NO; }
     NSString *fb_preUrlStr = [urlArr firstObject];
+    
+    NSString *errorString = [NSString stringWithFormat:@"路由前缀%@重复了!",fb_preUrlStr];
+    NSCAssert(![[YBRouterFunctions sharedRouter].routerClassMutDic objectForKey:fb_preUrlStr], errorString);
+    
     [[YBRouterFunctions sharedRouter].routerClassMutDic setObject:NSStringFromClass(cla) forKey:fb_preUrlStr];
     
     return true;
 }
 
 + (BOOL)registerClass:(Class)cla withRouter:(NSString *)router {
-    if (!router) { return NO; }
-    
-    NSArray *urlArr = [router componentsSeparatedByString:kYBRouterSpecialSymbol];
-    if (urlArr.count<1) { return NO; }
-    NSString *fb_preUrlStr = [urlArr firstObject];
-    
-    [[YBRouterFunctions sharedRouter].routerClassMutDic setObject:NSStringFromClass(cla) forKey:fb_preUrlStr];
-    
-    return YES;
+    return routerRegisterClass(cla, router);
 }
 
 inline id getController(NSString *router) {

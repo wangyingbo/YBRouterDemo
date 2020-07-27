@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**可由服务器控制跳转*/
 extern NSString * const kRouterServerDemoVC;
+/**注册testVC*/
+extern NSString * const kRouterServerTestVC;
+
+
 
 
 //可自定义前缀，需要多个前缀的话可参考YBRouter.h自己定义宏

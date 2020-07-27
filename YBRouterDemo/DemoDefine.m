@@ -8,9 +8,13 @@
 
 #import "DemoDefine.h"
 #import "DemoVC.h"
+@class TestVC;
+
 
 /**可由服务器控制跳转-需手动注册*/
 NSString * const kRouterServerDemoVC = @"wechat://bapp/userInfo?userId=123&session=zzz";
+/**注册testVC*/
+NSString * const kRouterServerTestVC = @"wechat://bapp/detailList?name=wyb";
 
 
 @implementation DemoDefine
@@ -18,6 +22,8 @@ NSString * const kRouterServerDemoVC = @"wechat://bapp/userInfo?userId=123&sessi
 + (void)load {
     /**可由服务器控制跳转*/
     routerRegisterClass(DemoVC.class, kRouterServerDemoVC);
+    /**注册testVC*/
+    routerRegisterClass(GET_CLASS(TestVC), kRouterServerTestVC);
 }
 
 
