@@ -21,6 +21,18 @@ typedef const char * YBRouterURI;
 //做(NSString*)(args *)转换是为了保证args是类名
 #define GET_CLASS(args) NSClassFromString((NSString*)(args *)[NSString stringWithCString:#args encoding:NSUTF8StringEncoding])
 #endif
+
+#ifndef CHECK_CLASS
+#define CHECK_CLASS(args) ({ \
+id obj = NSClassFromString((NSString*)(args *)[NSString stringWithCString:#args encoding:NSUTF8StringEncoding]); \
+if (!obj){ \
+NSAssert(NO, @"args must be a class name"); \
+@""; \
+} \
+obj; \
+})
+#endif
+
 #ifndef YBCLASS
 #define YBCLASS(args) GET_CLASS(args)
 #endif
