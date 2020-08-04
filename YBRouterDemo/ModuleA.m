@@ -20,6 +20,14 @@
     return [NSObject class];
 }
 
++ (void)factoryRunMethod:(NSString *)arg {
+    NSLog(@"ModuleA 调用类方法");
+}
+
+- (void)instanceRunMethod:(NSString *)arg {
+    NSLog(@"ModuleA 调用实例方法");
+}
+
 - (void)runWithCallBack:(NSDictionary *)arg {
     NSLog(@"带回调的调用方式");
     

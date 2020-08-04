@@ -11,7 +11,6 @@
 #import <UIKit/UIKit.h>
 
 
-NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^RouterCallBackHandler)(id obj);
 
@@ -45,18 +44,18 @@ obj; \
 #define YBInvocatations "YBInvocatations"
 #define KSDATA(sectname) __attribute((used, section("__DATA,"#sectname" ")))
 #define YBRouterRegister(target,method) \
-class _; static char *_##target##_##method##_ KSDATA(YBInvocatations) = "{\""#target"\":\""#method"\"}";
+class _; static NSString *_##target##_##method##_ KSDATA(YBInvocatations) = @"{\""#target"\":\""#method"\"}";
 
 //basic定义：类-前缀-路由
 #define YBBaseControllerRegister(cla,Prefix,router) \
-class _; static const char *_##cla##_##router##_ = "{\""#cla"\":\""Prefix#router"\"}";
+class _; static NSString *_##cla##_##router##_ = @"{\""#cla"\":\""Prefix#router"\"}";
 //定义：类-默认类名即路由
 #define YBControllerRegisterClass(cla) YBBaseControllerRegister(cla,ROUTER_PREFIX,cla);VERIFY_CLASS(cla);
 
 
 //basic定义：类-自定义路由
 #define YBBaseControllerCustomRegister(cla,Prefix,router) \
-class _; static const char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
+class _; static NSString *_##cla##_URL_ = @"{\""#cla"\":\""Prefix router"\"}";
 //定义：类-自定义路由（如果需要多个前缀，可参考这个宏定义多个宏）
 #define YBControllerRegisterClassRouter(cla,router) YBBaseControllerCustomRegister(cla,"",router);VERIFY_CLASS(cla);
 
@@ -67,18 +66,19 @@ class _; static const char *_##cla##_URL_ = "{\""#cla"\":\""Prefix router"\"}";
 #endif
 
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface YBRouter : NSObject
 
 #pragma mark - mudule
-+ (_Nullable id)routerToURI:(YBRouterURI)URI args:(NSDictionary * _Nullable )args;
-+ (id)performTarget:(NSString *)targetName action:(NSString  *)actionName args:(NSDictionary * _Nullable )args;
++ (_Nullable id)routerToURI:(NSString *)URI args:(NSDictionary * _Nullable )args;
++ (id)performTarget:(NSString *)targetName action:(NSString *)actionName args:(NSDictionary * _Nullable )args;
 + (id)performTarget:(NSString *)targetName action:(NSString *)actionName args:(NSDictionary * _Nullable )args error:(NSError ** _Nullable )error;
++ (id)performTarget:(id)target selector:(SEL)action args:(NSDictionary * _Nullable )args error:(NSError ** _Nullable )error;
 extern id router_msgSend(id target, SEL selector,id firstParameter, ...);
 
 #pragma mark - controller类的router
-+ (__kindof UIViewController *)routerControllerURI:(YBRouterURI)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
-+ (__kindof UIViewController *)routerToControllerURI:(void *)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
++ (__kindof UIViewController *)routerControllerURI:(NSString *)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
 
 #pragma mark - 调用routerRegisterClass注册的controller可用此方法跳转
 //+ (id)openControllerUrl:(NSString *)router parameter:(id _Nullable)parameter completion:(RouterCallBackHandler _Nullable)completion;

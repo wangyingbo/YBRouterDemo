@@ -10,5 +10,6 @@
 
 @implementation ModuleB
 - (void)run:(NSDictionary *)arg {
+    NSLog(@"ModuleB 里调用了run方法");
 }
 @end

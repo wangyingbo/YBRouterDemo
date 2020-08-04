@@ -122,7 +122,7 @@ inline id router_msgSend(id target, SEL aSelector,id firstParameter, ...) {
 
 @implementation YBRouter
 
-+ (id)routerToURI:(YBRouterURI)URI args:(NSDictionary *)args {
++ (id)routerToURI:(NSString *)URI args:(NSDictionary *)args {
     id json = [YBRouter getRouterUrlWithURI:URI];
     if ([json isKindOfClass:[NSDictionary class]] && [json allKeys].count) {
         NSString *target = [json allKeys][0];
@@ -138,8 +138,15 @@ inline id router_msgSend(id target, SEL aSelector,id firstParameter, ...) {
     return [self performTarget:targetName action:actionName args:args error:nil];
 }
 
+
 + (id)performTarget:(NSString *)targetName action:(NSString *)actionName args:(NSDictionary *)args error:(NSError *__autoreleasing *)error {
+    SEL action = NSSelectorFromString([actionName stringByAppendingString:@":"]);
     NSObject *target = [NSClassFromString(targetName) new];
+    return [self performTarget:target selector:action args:args error:error];
+}
+
++ (id)performTarget:(id)target selector:(SEL)selector args:(NSDictionary *)args error:(NSError *__autoreleasing  _Nullable *)error {
+    
     if (!target) {
         if (error) {
             *error = [NSError errorWithDomain:YBRouterPerformError code:-1 userInfo:@{YBRouterReasonKey: @"target not exists"}];
@@ -147,7 +154,7 @@ inline id router_msgSend(id target, SEL aSelector,id firstParameter, ...) {
         return nil;
     }
     
-    SEL action = NSSelectorFromString([actionName stringByAppendingString:@":"]);
+    SEL action = selector;
     if (![target respondsToSelector:action]) {
         if (error) {
             *error = [NSError errorWithDomain:YBRouterPerformError code:-2 userInfo:@{YBRouterReasonKey: @"method not exists"}];
@@ -236,8 +243,8 @@ break;                                                         \
     return returnValue;
 }
 
-id getJsonObjWithURI(YBRouterURI URI) {
-    NSString *uri = [NSString stringWithCString:URI encoding:NSUTF8StringEncoding];
+id getJsonObjWithURI(NSString *URI) {
+    NSString *uri = URI;//[NSString stringWithCString:URI encoding:NSUTF8StringEncoding]
     NSData *jsonData =  [uri dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;
     id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
@@ -249,18 +256,18 @@ id getJsonObjWithURI(YBRouterURI URI) {
     return json;
 }
 
-+ (id)getRouterUrlWithURI:(YBRouterURI)URI {
++ (id)getRouterUrlWithURI:(NSString *)URI {
     return getJsonObjWithURI(URI);
 }
 
 #pragma mark -
-+ (UIViewController *)routerControllerURI:(YBRouterURI)URI parameter:(id)parameter handler:(RouterCallBackHandler)handler {
++ (UIViewController *)routerControllerURI:(NSString *)URI parameter:(id)parameter handler:(RouterCallBackHandler)handler {
     UIViewController *controller = nil;
     NSDictionary *jsonDic = [YBRouter getRouterUrlWithURI:URI];
     NSString *urlString = [jsonDic allValues][0];//拿到注册的url
     NSString *claString = [jsonDic allKeys][0];
     if (!urlString || !claString) {
-        return [YBRouter openControllerUrl:[NSString stringWithCString:URI encoding:NSUTF8StringEncoding] parameter:parameter completion:handler];
+        return [YBRouter openControllerUrl:URI parameter:parameter completion:handler];
     }else {
         Class cla = NSClassFromString(claString);
         NSAssert(cla, @"is not a class");
@@ -273,11 +280,6 @@ id getJsonObjWithURI(YBRouterURI URI) {
     }
     
     return controller;
-}
-
-+ (__kindof UIViewController *)routerToControllerURI:(void *)URI parameter:(id)parameter handler:(RouterCallBackHandler)handler {
-    YBRouterURI utfURI = URI;
-    return [YBRouter routerControllerURI:utfURI parameter:parameter handler:handler];
 }
 
 

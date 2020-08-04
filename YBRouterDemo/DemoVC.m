@@ -44,17 +44,17 @@
     
     NSLog(@"****************************************");
     NSLog(@"遵守YBRouterKVCProtocol协议则KVC自动赋值");
-    NSLog(@"appCode:%@",self.appCode);
+    NSLog(@"KVC传参赋值 appCode:%@",self.appCode);
     //name实现了协议里的routerIgnoredKeys方法后，不会自动赋值了
-    NSLog(@"name:%@",self.name);
+    NSLog(@"KVC传参赋值 name:%@",self.name);
     
     NSLog(@"****************************************");
     NSLog(@"也可以遵守普通YBRouterProtocol协议，手动获取参数值");
     NSDictionary *parameters = [self getRouterParameter];
     NSString *appCode = parameters[@"appCode"];
     NSString *name = parameters[@"name"];
-    NSLog(@"appCode:%@",appCode);
-    NSLog(@"name:%@",name);
+    NSLog(@"调用获取参数方法赋值 appCode:%@",appCode);
+    NSLog(@"调用获取参数方法赋值 name:%@",name);
     
     NSLog(@"****************************************");
     NSLog(@"总的参数字典:%@",parameters);
@@ -95,6 +95,14 @@
     id data = router_msgSend([ModuleA class], @selector(callClassSelector:array:dictionary:), @"testX",@[@(1),@"ahah"],@{@"name":@"Peny"});
     NSLog(@"返回值：%@",data);
     
+    //7、调用类方法
+    NSError *factoryError = nil;
+    [YBRouter performTarget:[ModuleA class] selector:@selector(factoryRunMethod:) args:nil error:&factoryError];
+    
+    //8、调用实例方法
+    ModuleA *module_A = [[ModuleA alloc] init];
+    NSError *instanceError = nil;
+    [YBRouter performTarget:module_A selector:@selector(instanceRunMethod:) args:nil error:&instanceError];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
