@@ -34,10 +34,10 @@ NSArray<NSString *>* KSReadConfiguration(char *sectionName,const struct mach_hea
     uintptr_t *memory = (uintptr_t*)getsectiondata(mhp64, SEG_DATA, sectionName, &size);
 #endif
     
-    unsigned long counter = size/sizeof(void*);
+    unsigned long counter = size/sizeof(NSString *);
     for(int i = 0; i < counter; ++i){
-        char *string = (char*)memory[i];
-        NSString *str = [NSString stringWithUTF8String:string];
+        NSString *string = (__bridge NSString *)((void*)memory[i]);
+        NSString *str = string;
         if(!str)continue;
         
         if(str) [configs addObject:str];
