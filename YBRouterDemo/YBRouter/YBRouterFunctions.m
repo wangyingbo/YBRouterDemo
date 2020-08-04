@@ -85,4 +85,20 @@ inline id getController(NSString *router) {
     
     return obj;
 }
+
++ (BOOL)isContainedWithRouter:(NSString *)router {
+    BOOL _contain = NO;
+    if (!router) { return _contain; }
+    
+    NSArray *urlArr = [router componentsSeparatedByString:kYBRouterSpecialSymbol];
+    if (urlArr.count<1) { return _contain; }
+    NSString *fb_preUrlStr = [urlArr firstObject];
+    
+    id obj = [[YBRouterFunctions sharedRouter].routerClassMutDic objectForKey:fb_preUrlStr];
+    if (obj) {
+        _contain = YES;
+    }
+    return _contain;
+}
+
 @end

@@ -265,12 +265,19 @@ id getJsonObjWithURI(YBRouterURI URI) {
         Class cla = NSClassFromString(claString);
         NSAssert(cla, @"is not a class");
         if (cla && ([cla isKindOfClass:[NSObject class]] || [cla isKindOfClass:[NSProxy class]])) {
-            routerRegisterClass(cla, urlString);
+            if (![YBRouterFunctions isContainedWithRouter:urlString]) {
+                routerRegisterClass(cla, urlString);
+            }
             return [YBRouter openControllerUrl:urlString parameter:parameter completion:handler];
         }
     }
     
     return controller;
+}
+
++ (__kindof UIViewController *)routerToControllerURI:(void *)URI parameter:(id)parameter handler:(RouterCallBackHandler)handler {
+    YBRouterURI utfURI = URI;
+    return [YBRouter routerControllerURI:utfURI parameter:parameter handler:handler];
 }
 
 

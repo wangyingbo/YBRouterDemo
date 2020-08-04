@@ -78,11 +78,12 @@ extern id router_msgSend(id target, SEL selector,id firstParameter, ...);
 
 #pragma mark - controller类的router
 + (__kindof UIViewController *)routerControllerURI:(YBRouterURI)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
++ (__kindof UIViewController *)routerToControllerURI:(void *)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
 
 #pragma mark - 调用routerRegisterClass注册的controller可用此方法跳转
-+ (id)openControllerUrl:(NSString *)router parameter:(id _Nullable)parameter completion:(RouterCallBackHandler _Nullable)completion;
+//+ (id)openControllerUrl:(NSString *)router parameter:(id _Nullable)parameter completion:(RouterCallBackHandler _Nullable)completion;
 
-+ (id)openControllerUrl:(NSString *)router jsonObj:(id _Nullable)jsonObj completion:(RouterCallBackHandler _Nullable)completion;
+//+ (id)openControllerUrl:(NSString *)router jsonObj:(id _Nullable)jsonObj completion:(RouterCallBackHandler _Nullable)completion;
 
 
 @end

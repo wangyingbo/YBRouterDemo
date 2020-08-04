@@ -57,4 +57,9 @@ extern id getController(NSString *router);
  @return controller
  */
 + (id)getControllerWithRouter:(NSString *)router;
+
+/// 是否已经注册过路由了
+/// @param router router description
++ (BOOL)isContainedWithRouter:(NSString *)router;
+
 @end
