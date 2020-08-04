@@ -48,14 +48,14 @@ class _; static NSString *_##target##_##method##_ KSDATA(YBInvocatations) = @"{\
 
 //basic定义：类-前缀-路由
 #define YBBaseControllerRegister(cla,Prefix,router) \
-class _; static NSString *_##cla##_##router##_ = @"{\""#cla"\":\""Prefix#router"\"}";
+class _; static NSString *_##cla##_##router##_ = @"{\""#cla"\":\"" Prefix#router"\"}";
 //定义：类-默认类名即路由
 #define YBControllerRegisterClass(cla) YBBaseControllerRegister(cla,ROUTER_PREFIX,cla);VERIFY_CLASS(cla);
 
 
 //basic定义：类-自定义路由
 #define YBBaseControllerCustomRegister(cla,Prefix,router) \
-class _; static NSString *_##cla##_URL_ = @"{\""#cla"\":\""Prefix router"\"}";
+class _; static NSString *_##cla##_URL_ = @"{\""#cla"\":\"" Prefix router"\"}";
 //定义：类-自定义路由（如果需要多个前缀，可参考这个宏定义多个宏）
 #define YBControllerRegisterClassRouter(cla,router) YBBaseControllerCustomRegister(cla,"",router);VERIFY_CLASS(cla);
 
