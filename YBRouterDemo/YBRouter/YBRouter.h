@@ -10,7 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
+typedef NS_ENUM(NSInteger,RouterErrorCode) {
+    /**perform selector no target*/
+    RouterErrorCodeNoTarget = -1,
+    /**perform selector no selector*/
+    RouterErrorCodeNoSelector = -2,
+};
 
 typedef void(^RouterCallBackHandler)(id obj);
 

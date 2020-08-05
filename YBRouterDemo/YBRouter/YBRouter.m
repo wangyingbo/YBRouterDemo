@@ -149,7 +149,7 @@ inline id router_msgSend(id target, SEL aSelector,id firstParameter, ...) {
     
     if (!target) {
         if (error) {
-            *error = [NSError errorWithDomain:YBRouterPerformError code:-1 userInfo:@{YBRouterReasonKey: @"target not exists"}];
+            *error = [NSError errorWithDomain:YBRouterPerformError code:RouterErrorCodeNoTarget userInfo:@{YBRouterReasonKey: @"target not exists"}];
         }
         return nil;
     }
@@ -157,7 +157,7 @@ inline id router_msgSend(id target, SEL aSelector,id firstParameter, ...) {
     SEL action = selector;
     if (![target respondsToSelector:action]) {
         if (error) {
-            *error = [NSError errorWithDomain:YBRouterPerformError code:-2 userInfo:@{YBRouterReasonKey: @"method not exists"}];
+            *error = [NSError errorWithDomain:YBRouterPerformError code:RouterErrorCodeNoSelector userInfo:@{YBRouterReasonKey: @"method not exists"}];
         }
         return nil;
     }

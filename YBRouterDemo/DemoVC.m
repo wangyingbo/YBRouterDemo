@@ -84,10 +84,12 @@
     //5、执行方法
     NSError *e = nil;
     [YBRouter performTarget:@"ModuleA" action:@"b" args:nil error:&e];
-    if (e.code == -1) { // no target
+    if (e.code == RouterErrorCodeNoTarget) { // no target
+        NSLog(@"%@",e);
         NSLog(@"error:当前找不到target");
     }
-    if (e.code == -2) { // mo method
+    if (e.code == RouterErrorCodeNoSelector) { // mo method
+        NSLog(@"%@",e);
         NSLog(@"error:当前找不到method");
     }
     
@@ -98,11 +100,13 @@
     //7、调用类方法
     NSError *factoryError = nil;
     [YBRouter performTarget:[ModuleA class] selector:@selector(factoryRunMethod:) args:nil error:&factoryError];
+    //NSLog(@"%@",factoryError);
     
     //8、调用实例方法
     ModuleA *module_A = [[ModuleA alloc] init];
     NSError *instanceError = nil;
     [YBRouter performTarget:module_A selector:@selector(instanceRunMethod:) args:nil error:&instanceError];
+    //NSLog(@"%@",instanceError);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
