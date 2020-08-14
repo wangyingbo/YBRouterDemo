@@ -118,6 +118,10 @@
     return NO;
 }
 
+- (void)routerParameters:(id)parameters {
+    NSLog(@"<%@>通过代理方法传参的参数是：\n%@",NSStringFromClass([self class]),parameters);
+}
+
 #pragma mark - YBRouterKVCProtocol
 - (NSArray<NSString *> *)routerIgnoredKeys {
     return @[@"name"];

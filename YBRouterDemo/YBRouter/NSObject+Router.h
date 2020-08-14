@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^FBRouterHandlerCompletion)(id obj);
+typedef void(^FBRouterHandlerCompletion)(id __nullable obj);
 
 @interface NSObject (Router)
 /**路由跳转的urLString*/

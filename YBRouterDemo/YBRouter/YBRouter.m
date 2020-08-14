@@ -317,6 +317,10 @@ id getJsonObjWithURI(NSString *URI) {
             //回调
             if (!routerCompletion) { routerCompletion = ^(id obj){}; }
             viewController.routerCompletion = routerCompletion;
+            //通过代理传参
+            if ([viewController respondsToSelector:@selector(routerParameters:)]) {
+                [(UIViewController<YBRouterProtocol> *)viewController routerParameters:[viewController getRouterParameter]];
+            }
             //遵守FBRouterKVCProtocol协议则KVC赋值
             if ([viewController conformsToProtocol:@protocol(YBRouterKVCProtocol)]) {
                 NSArray *ignoredArr = @[];

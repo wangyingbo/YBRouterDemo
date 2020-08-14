@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YBRouterHeader.h"
 @class DemoVC;
+@class TestFirstVC;
 
 #pragma GCC diagnostic ignored "-Wmacro-redefined"
 
@@ -46,6 +47,7 @@ extern NSString * const kRouterServerTestVC;
  */
 @YBControllerRegisterClass(DemoVC)
 @YBControllerRegisterClassRouter(DemoVC, "alipay://bapp/userInfo?userId=123&token=xxxx")
+@YBControllerRegisterClass(TestFirstVC)
 
 
 
