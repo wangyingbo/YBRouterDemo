@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "YBRouterFunctions.h"
 
 typedef NS_ENUM(NSInteger,RouterErrorCode) {
     /**perform selector no target*/
@@ -26,6 +27,7 @@ typedef const char * YBRouterURI;
 #define GET_CLASS(args) NSClassFromString((NSString*)(args *)[NSString stringWithCString:#args encoding:NSUTF8StringEncoding])
 #endif
 
+/**校验参数是否是类名；可在编译期校验class的合法性*/
 #ifndef CHECK_CLASS
 #define CHECK_CLASS(args) ({ \
 id obj = NSClassFromString((NSString*)(args *)[NSString stringWithCString:#args encoding:NSUTF8StringEncoding]); \
@@ -40,6 +42,13 @@ obj; \
 #ifndef YBCLASS
 #define YBCLASS(args) GET_CLASS(args)
 #endif
+
+/**宏定义快捷注册路由类*/
+#ifndef YBRouterRegisterClass
+//#define YBRouterRegisterClass(className,url) autoreleasepool{} do { rounterRegisterClass(YBCLASS(className),url); } while (0);
+#define YBRouterRegisterClass(className,url) autoreleasepool{} do { [YBRouterFunctions registerClass:YBCLASS(className) withRouter:url]; } while (0);
+#endif
+
 
 //校验声明controller的路由url时，传入的是否是正确的类名
 #ifndef VERIFY_CLASS
@@ -83,7 +92,15 @@ NS_ASSUME_NONNULL_BEGIN
 extern id router_msgSend(id target, SEL selector,id firstParameter, ...);
 
 #pragma mark - controller类的router
+
 + (__kindof UIViewController *)routerControllerURI:(NSString *)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
+
+/// 使用自身controller来push或者present新的controller
+/// @param selfController 当前的controller
+/// @param URI 将要跳转的uri
+/// @param parameter 参数
+/// @param handler 回调
++ (__kindof UIViewController *)selfController:(__kindof UIViewController  * _Nullable )selfController routerControllerURI:(NSString *)URI parameter:(id _Nullable)parameter handler:(RouterCallBackHandler _Nullable)handler;
 
 #pragma mark - 调用routerRegisterClass注册的controller可用此方法跳转
 //+ (id)openControllerUrl:(NSString *)router parameter:(id _Nullable)parameter completion:(RouterCallBackHandler _Nullable)completion;

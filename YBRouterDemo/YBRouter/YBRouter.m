@@ -15,7 +15,6 @@
 #include <dlfcn.h>
 #include <mach-o/ldsyms.h>
 
-#import "YBRouterFunctions.h"
 #import "YBRouterTool.h"
 #import "YBRouterProtocol.h"
 
@@ -260,14 +259,18 @@ id getJsonObjWithURI(NSString *URI) {
     return getJsonObjWithURI(URI);
 }
 
-#pragma mark -
+#pragma mark - controller类的router
 + (UIViewController *)routerControllerURI:(NSString *)URI parameter:(id)parameter handler:(RouterCallBackHandler)handler {
+    return [self selfController:nil routerControllerURI:URI parameter:parameter handler:handler];
+}
+
++ (__kindof UIViewController *)selfController:(__kindof UIViewController *)selfController routerControllerURI:(NSString *)URI parameter:(id)parameter handler:(RouterCallBackHandler)handler {
     UIViewController *controller = nil;
     NSDictionary *jsonDic = [YBRouter getRouterUrlWithURI:URI];
     NSString *urlString = [jsonDic allValues][0];//拿到注册的url
     NSString *claString = [jsonDic allKeys][0];
     if (!urlString || !claString) {
-        return [YBRouter openControllerUrl:URI parameter:parameter completion:handler];
+        return [YBRouter selfController:selfController openControllerUrl:URI parameter:parameter completion:handler];
     }else {
         Class cla = NSClassFromString(claString);
         NSAssert(cla, @"is not a class");
@@ -275,7 +278,7 @@ id getJsonObjWithURI(NSString *URI) {
             if (![YBRouterFunctions isContainedWithRouter:urlString]) {
                 routerRegisterClass(cla, urlString);
             }
-            return [YBRouter openControllerUrl:urlString parameter:parameter completion:handler];
+            return [YBRouter selfController:selfController openControllerUrl:urlString parameter:parameter completion:handler];
         }
     }
     
@@ -283,11 +286,16 @@ id getJsonObjWithURI(NSString *URI) {
 }
 
 
-#pragma mark -
+#pragma mark - 中介方法
+
 + (id)openControllerUrl:(NSString *)router parameter:(id)parameter completion:(RouterCallBackHandler)completion {
+    return [self selfController:nil openControllerUrl:router parameter:parameter completion:completion];
+}
+
++ (id)selfController:(__kindof UIViewController  * _Nullable )selfController openControllerUrl:(NSString *)router parameter:(id)parameter completion:(RouterCallBackHandler)completion {
     NSAssert((router), @"router不能为空");
     if (!router) { return nil; }
-    return [self openUrl:router parameter:parameter routerCompletion:completion];
+    return [self selfController:selfController openUrl:router parameter:parameter routerCompletion:completion];
 }
 
 + (id)openControllerUrl:(NSString *)router jsonObj:(id)jsonObj completion:(RouterCallBackHandler)completion {
@@ -297,7 +305,12 @@ id getJsonObjWithURI(NSString *URI) {
     return [self openUrl:urlStr parameter:nil routerCompletion:completion];
 }
 
+#pragma mark - 跳转方法
 + (id)openUrl:(NSString *)urlStr parameter:(id)parameter routerCompletion:(void (^)(id))routerCompletion {
+    return [self selfController:nil openUrl:urlStr parameter:parameter routerCompletion:routerCompletion];
+}
+
++ (id)selfController:(__kindof UIViewController  * _Nullable )selfController openUrl:(NSString *)urlStr parameter:(id)parameter routerCompletion:(void (^)(id))routerCompletion {
     UIViewController *viewController;
     
     if ([urlStr hasPrefix:@"http://"] || [urlStr hasPrefix:@"https://"]) {
@@ -336,13 +349,21 @@ id getJsonObjWithURI(NSString *URI) {
         if ([viewController respondsToSelector:@selector(routerViewControllerIsPresented)]) {
             isPresent = [viewController performSelector:@selector(routerViewControllerIsPresented)];
         }
-        if (![YBRouter getCurrentVC].navigationController) {
+        
+        UIViewController *currentVC = nil;
+        if (selfController) {
+            currentVC = selfController;
+        }else {
+            currentVC = [YBRouter getCurrentVC];
+        }
+        
+        if (!currentVC.navigationController) {
             isPresent = YES;
         }
         if (isPresent) {
-            [[YBRouter getCurrentVC] presentViewController:viewController animated:YES completion:nil];
+            [currentVC presentViewController:viewController animated:YES completion:nil];
         }else {
-            [[YBRouter getCurrentVC].navigationController pushViewController:viewController animated:YES];
+            [currentVC.navigationController pushViewController:viewController animated:YES];
         }
         
         return viewController;

@@ -10,6 +10,7 @@
 #import "YBRouterHeader.h"
 @class DemoVC;
 @class TestFirstVC;
+@class TestSecondVC;
 
 #pragma GCC diagnostic ignored "-Wmacro-redefined"
 
@@ -20,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kRouterServerDemoVC;
 /**注册testVC*/
 extern NSString * const kRouterServerTestVC;
+/**注册TestSecondVC*/
+extern NSString * const kRouterServerTestSecondVC;
 
 
 
@@ -46,8 +49,9 @@ extern NSString * const kRouterServerTestVC;
     b) @YBControllerRegisterClassRouter(args,string) 自定义映射；
  */
 @YBControllerRegisterClass(DemoVC)
-@YBControllerRegisterClassRouter(DemoVC, "alipay://bapp/userInfo?userId=123&token=xxxx")
+@YBControllerRegisterClassRouter(DemoVC, "alipay://bapp/demo?userId=123&token=xxxx")
 @YBControllerRegisterClass(TestFirstVC)
+@YBControllerRegisterClassRouter(TestSecondVC, @"alipay://bapp/second?id=123")
 
 
 

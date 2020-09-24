@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D107721824E6337100829C5C /* TestFirstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D107721724E6337100829C5C /* TestFirstVC.m */; };
 		D107721C24E636F500829C5C /* YBItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D107721B24E636F500829C5C /* YBItem.m */; };
+		D11CEB54251C3A5900BAE369 /* TestSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D11CEB53251C3A5900BAE369 /* TestSecondVC.m */; };
 		D128DC9123D6EACB00C50244 /* DemoDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = D128DC9023D6EACB00C50244 /* DemoDefine.m */; };
 		D148D4DA235063C700D9E933 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D4D9235063C700D9E933 /* AppDelegate.m */; };
 		D148D4DD235063C700D9E933 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D4DC235063C700D9E933 /* ViewController.m */; };
@@ -51,6 +52,8 @@
 		D107721724E6337100829C5C /* TestFirstVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestFirstVC.m; sourceTree = "<group>"; };
 		D107721A24E636F500829C5C /* YBItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBItem.h; sourceTree = "<group>"; };
 		D107721B24E636F500829C5C /* YBItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBItem.m; sourceTree = "<group>"; };
+		D11CEB52251C3A5900BAE369 /* TestSecondVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSecondVC.h; sourceTree = "<group>"; };
+		D11CEB53251C3A5900BAE369 /* TestSecondVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSecondVC.m; sourceTree = "<group>"; };
 		D128DC8F23D6EACB00C50244 /* DemoDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoDefine.h; sourceTree = "<group>"; };
 		D128DC9023D6EACB00C50244 /* DemoDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoDefine.m; sourceTree = "<group>"; };
 		D148D4D5235063C700D9E933 /* YBRouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YBRouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +166,8 @@
 				D1B161DC24CEADBA00BA2DC7 /* TestVC.m */,
 				D107721624E6337100829C5C /* TestFirstVC.h */,
 				D107721724E6337100829C5C /* TestFirstVC.m */,
+				D11CEB52251C3A5900BAE369 /* TestSecondVC.h */,
+				D11CEB53251C3A5900BAE369 /* TestSecondVC.m */,
 				D148D522235071DC00D9E933 /* ModuleA.h */,
 				D148D523235071DC00D9E933 /* ModuleA.m */,
 				D148D525235071F300D9E933 /* ModuleB.h */,
@@ -360,6 +365,7 @@
 				D148D524235071DC00D9E933 /* ModuleA.m in Sources */,
 				D148D527235071F300D9E933 /* ModuleB.m in Sources */,
 				D1B161DD24CEADBA00BA2DC7 /* TestVC.m in Sources */,
+				D11CEB54251C3A5900BAE369 /* TestSecondVC.m in Sources */,
 				D107721824E6337100829C5C /* TestFirstVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

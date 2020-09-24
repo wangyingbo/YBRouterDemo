@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
     YBRouterVCTagDemo,
     YBRouterVCTagTest,
     YBRouterVCTagTestFirst,
+    YBRouterVCTagTestSecond,
 };
 
 
@@ -73,6 +74,7 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
     [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagDemo, @"DemoVC")];
     [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagTest, @"TestVC")];
     [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagTestFirst, @"TestFirstVC")];
+    [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagTestSecond, @"TestSecondVC")];
     self.titleArray = mutArray.copy;
 }
 
@@ -146,6 +148,11 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
             [self testFirstVC_action];
         }
             break;
+        case YBRouterVCTagTestSecond:
+        {
+            [self testSecond_action];
+        }
+            break;
             
         default:
             break;
@@ -183,6 +190,15 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
     [mutDict setObject:@"456" forKey:@"orderId"];
     [mutDict setObject:@"wechat" forKey:@"name"];
     [YBRouter routerControllerURI:_TestFirstVC_TestFirstVC_ parameter:mutDict.copy handler:nil];
+}
+
+/// 测试用宏定义注册的类跳转
+- (void)testSecond_action {
+    NSMutableDictionary *mutDict = [NSMutableDictionary dictionary];
+    [mutDict setObject:@"456" forKey:@"orderId"];
+    [mutDict setObject:@"wechat" forKey:@"name"];
+    //[YBRouter routerControllerURI:kRouterServerTestSecondVC parameter:mutDict.copy handler:nil];
+    [YBRouter selfController:self routerControllerURI:_TestSecondVC_URL_ parameter:mutDict.copy handler:^(id obj) { }];
 }
 
 @end
