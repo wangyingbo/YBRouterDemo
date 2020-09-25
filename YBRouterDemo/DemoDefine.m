@@ -10,7 +10,7 @@
 #import "DemoVC.h"
 @class TestVC;
 @class TestSecondVC;
-
+@class BaseWebViewController;
 
 /**可由服务器控制跳转-需手动注册*/
 NSString * const kRouterServerDemoVC = @"wechat://bapp/userInfo?userId=123&session=zzz";
@@ -29,6 +29,8 @@ NSString * const kRouterServerTestSecondVC = @"wechat://bapp/detail?id=123456";
     routerRegisterClass(YBCLASS(TestVC), kRouterServerTestVC);
     /**用宏定义快捷注册testVC*/
     @YBRouterRegisterClass(TestSecondVC, kRouterServerTestSecondVC);
+    /**定义通用的webViewController页面，其他自定义的webView可走正常逻辑*/
+    @YBRouterRegisterClass(BaseWebViewController, kYBRouterGeneralWebViewController);
     
 }
 

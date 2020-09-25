@@ -26,6 +26,7 @@
 		D148D521235071BF00D9E933 /* DemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D520235071BF00D9E933 /* DemoVC.m */; };
 		D148D524235071DC00D9E933 /* ModuleA.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D523235071DC00D9E933 /* ModuleA.m */; };
 		D148D527235071F300D9E933 /* ModuleB.m in Sources */ = {isa = PBXBuildFile; fileRef = D148D526235071F300D9E933 /* ModuleB.m */; };
+		D14A9818251DEBB80074001B /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D14A9817251DEBB80074001B /* BaseWebViewController.m */; };
 		D179D56D23C6F7740087B713 /* NSObject+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = D179D56C23C6F7740087B713 /* NSObject+Router.m */; };
 		D1B161DD24CEADBA00BA2DC7 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B161DC24CEADBA00BA2DC7 /* TestVC.m */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,8 @@
 		D148D523235071DC00D9E933 /* ModuleA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleA.m; sourceTree = "<group>"; };
 		D148D525235071F300D9E933 /* ModuleB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleB.h; sourceTree = "<group>"; };
 		D148D526235071F300D9E933 /* ModuleB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleB.m; sourceTree = "<group>"; };
+		D14A9816251DEBB80074001B /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebViewController.h; sourceTree = "<group>"; };
+		D14A9817251DEBB80074001B /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
 		D179D56B23C6F7740087B713 /* NSObject+Router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Router.h"; sourceTree = "<group>"; };
 		D179D56C23C6F7740087B713 /* NSObject+Router.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Router.m"; sourceTree = "<group>"; };
 		D1B161DB24CEADBA00BA2DC7 /* TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				D107721724E6337100829C5C /* TestFirstVC.m */,
 				D11CEB52251C3A5900BAE369 /* TestSecondVC.h */,
 				D11CEB53251C3A5900BAE369 /* TestSecondVC.m */,
+				D14A9816251DEBB80074001B /* BaseWebViewController.h */,
+				D14A9817251DEBB80074001B /* BaseWebViewController.m */,
 				D148D522235071DC00D9E933 /* ModuleA.h */,
 				D148D523235071DC00D9E933 /* ModuleA.m */,
 				D148D525235071F300D9E933 /* ModuleB.h */,
@@ -364,6 +369,7 @@
 				D148D519235064D300D9E933 /* YBRouterFunctions.m in Sources */,
 				D148D524235071DC00D9E933 /* ModuleA.m in Sources */,
 				D148D527235071F300D9E933 /* ModuleB.m in Sources */,
+				D14A9818251DEBB80074001B /* BaseWebViewController.m in Sources */,
 				D1B161DD24CEADBA00BA2DC7 /* TestVC.m in Sources */,
 				D11CEB54251C3A5900BAE369 /* TestSecondVC.m in Sources */,
 				D107721824E6337100829C5C /* TestFirstVC.m in Sources */,

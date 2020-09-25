@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
     YBRouterVCTagTest,
     YBRouterVCTagTestFirst,
     YBRouterVCTagTestSecond,
+    YBRouterVCTagBaseWebView,
 };
 
 
@@ -75,6 +76,7 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
     [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagTest, @"TestVC")];
     [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagTestFirst, @"TestFirstVC")];
     [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagTestSecond, @"TestSecondVC")];
+    [mutArray addObject:YB_CREATE_ITEM(YBRouterVCTagBaseWebView, @"BaseWebViewVC")];
     self.titleArray = mutArray.copy;
 }
 
@@ -153,6 +155,11 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
             [self testSecond_action];
         }
             break;
+        case YBRouterVCTagBaseWebView:
+        {
+            [self testWebViewController_action];
+        }
+            break;
             
         default:
             break;
@@ -199,6 +206,14 @@ typedef NS_ENUM(NSUInteger,YBRouterVCTag) {
     [mutDict setObject:@"wechat" forKey:@"name"];
     //[YBRouter routerControllerURI:kRouterServerTestSecondVC parameter:mutDict.copy handler:nil];
     [YBRouter selfController:self routerControllerURI:_TestSecondVC_URL_ parameter:mutDict.copy handler:^(id obj) { }];
+}
+
+/// 测试通用的webView跳转
+- (void)testWebViewController_action {
+    NSMutableDictionary *mutDict = [NSMutableDictionary dictionary];
+    [mutDict setObject:@"456" forKey:@"orderId"];
+    [mutDict setObject:@"wechat" forKey:@"name"];
+    [YBRouter selfController:self routerControllerURI:@"https://www.baidu.com?testPara=wyb&id=123" parameter:mutDict.copy handler:^(id obj) { }];
 }
 
 @end

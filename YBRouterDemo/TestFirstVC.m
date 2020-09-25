@@ -35,6 +35,9 @@
 
 
 #pragma mark - YBRouterProtocol
+- (BOOL)routerViewControllerIsPresented {
+    return YES;
+}
 
 - (void)routerParameters:(id)parameters {
     NSLog(@"<%@>通过代理方法传参的参数是：\n%@",NSStringFromClass([self class]),parameters);

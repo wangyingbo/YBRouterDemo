@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol YBRouterProtocol <NSObject>
 @optional;
@@ -16,8 +17,8 @@
 - (BOOL)routerViewControllerIsPresented;
 /**通过代理方法传参*/
 - (void)routerParameters:(id)parameters;
-/***/
-//- (NSDictionary *)routerRegisterClass:(id)sender;
+/**自定义转场动画类型*/
+- (void)routerTransitionPreController:(__kindof UIViewController *)preController nextController:(__kindof UIViewController *)nextController;
 @end
 
 /**如果遵守YBRouterKVCProtocol协议，则所传的参数都需要有定义的成员属性或成员变量接收*/

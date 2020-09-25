@@ -17,8 +17,9 @@ typedef NS_ENUM(NSInteger,RouterErrorCode) {
     /**perform selector no selector*/
     RouterErrorCodeNoSelector = -2,
 };
-
-typedef void(^RouterCallBackHandler)(id obj);
+/**注册通用的webViewController*/
+static NSString * _Nonnull const kYBRouterGeneralWebViewController = @"kYBRouterGeneralWebViewController";
+typedef void(^RouterCallBackHandler)(id _Nullable obj);
 
 typedef const char * YBRouterURI;
 

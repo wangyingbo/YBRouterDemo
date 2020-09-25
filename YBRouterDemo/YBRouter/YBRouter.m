@@ -315,39 +315,53 @@ id getJsonObjWithURI(NSString *URI) {
     
     if ([urlStr hasPrefix:@"http://"] || [urlStr hasPrefix:@"https://"]) {
         //webView跳转
-        
+        viewController = getController(kYBRouterGeneralWebViewController);
     }else {
         viewController = getController(urlStr);
     }
+    
+    //弹出视图方式选择
+    BOOL isPresent = NO;
+    //是否自定义转场动画
+    BOOL isCustomTransition = NO;
     
     // [viewController respondsToSelector:@selector(implementationRouter)]
     if (viewController && [viewController isKindOfClass:[UIViewController class]]) {
         //判断是否遵守FBRouterProtocol协议
         if ([viewController conformsToProtocol:@protocol(YBRouterProtocol)]) {
+            
+            UIViewController<YBRouterProtocol> *protocolVC = (UIViewController<YBRouterProtocol> *)viewController;
+            
             //传参
-            [viewController configRouterString:urlStr];
-            if (parameter) { [viewController configRouterParameter:parameter]; }
+            [protocolVC configRouterString:urlStr];
+            if (parameter) { [protocolVC configRouterParameter:parameter]; }
             //回调
             if (!routerCompletion) { routerCompletion = ^(id obj){}; }
-            viewController.routerCompletion = routerCompletion;
+            protocolVC.routerCompletion = routerCompletion;
             //通过代理传参
-            if ([viewController respondsToSelector:@selector(routerParameters:)]) {
-                [(UIViewController<YBRouterProtocol> *)viewController routerParameters:[viewController getRouterParameter]];
+            if ([protocolVC respondsToSelector:@selector(routerParameters:)]) {
+                [protocolVC routerParameters:[protocolVC getRouterParameter]];
             }
             //遵守FBRouterKVCProtocol协议则KVC赋值
             if ([viewController conformsToProtocol:@protocol(YBRouterKVCProtocol)]) {
+                UIViewController<YBRouterKVCProtocol> *kvcProtocolVC = (UIViewController<YBRouterKVCProtocol> *)viewController;
                 NSArray *ignoredArr = @[];
-                if ([viewController respondsToSelector:@selector(routerIgnoredKeys)]) {
-                    ignoredArr = [viewController performSelector:@selector(routerIgnoredKeys)];
+                if ([kvcProtocolVC respondsToSelector:@selector(routerIgnoredKeys)]) {
+                    ignoredArr = [kvcProtocolVC routerIgnoredKeys];
                 }
-                [viewController setValueByKeyWithIgnoredKeys:ignoredArr];
+                [kvcProtocolVC setValueByKeyWithIgnoredKeys:ignoredArr];
             }
-        }
-        
-        //弹出视图方式选择
-        BOOL isPresent = NO;
-        if ([viewController respondsToSelector:@selector(routerViewControllerIsPresented)]) {
-            isPresent = [viewController performSelector:@selector(routerViewControllerIsPresented)];
+            
+            //获取页面跳转方式
+            if ([protocolVC respondsToSelector:@selector(routerViewControllerIsPresented)]) {
+                isPresent = [protocolVC routerViewControllerIsPresented];
+            }
+            
+            
+            //判断是否自定义了转场动画
+            if ([protocolVC respondsToSelector:@selector(routerTransitionPreController:nextController:)]) {
+                isCustomTransition = YES;
+            }
         }
         
         UIViewController *currentVC = nil;
@@ -360,11 +374,19 @@ id getJsonObjWithURI(NSString *URI) {
         if (!currentVC.navigationController) {
             isPresent = YES;
         }
-        if (isPresent) {
-            [currentVC presentViewController:viewController animated:YES completion:nil];
+        
+        //如果自定义转场，则调用代理的自定义转场方法
+        if (isCustomTransition) {
+            UIViewController<YBRouterProtocol> *protocolVC = (UIViewController<YBRouterProtocol> *)viewController;
+            [protocolVC routerTransitionPreController:currentVC nextController:viewController];
         }else {
-            [currentVC.navigationController pushViewController:viewController animated:YES];
+            if (isPresent) {
+                [currentVC presentViewController:viewController animated:YES completion:nil];
+            }else {
+                [currentVC.navigationController pushViewController:viewController animated:YES];
+            }
         }
+        
         
         return viewController;
     }
@@ -397,7 +419,7 @@ id getJsonObjWithURI(NSString *URI) {
     if ([nextResponder isKindOfClass:[UITabBarController class]]){
         UITabBarController * tabbar = (UITabBarController *)nextResponder;
         //UINavigationController * nav = (UINavigationController *)tabbar.viewControllers[tabbar.selectedIndex];
-        id nav = tabbar.selectedViewController ; //上下两种写法都行
+        id nav = tabbar.selectedViewController; //上下两种写法都行
         if ([nav isKindOfClass:[UINavigationController class]]) {
             result = ((UINavigationController *)nav).childViewControllers.lastObject;
         }else if ([nav isKindOfClass:[UIViewController class]]) {
