@@ -20,7 +20,7 @@
 
 
 
-const NSErrorDomain YBRouterPerformError = @"KSRouterPerformError";
+const NSErrorDomain YBRouterPerformError = @"YBRouterPerformError";
 const NSErrorUserInfoKey YBRouterReasonKey = @"reason";
 
 NSArray<NSString *>* KSReadConfiguration(char *sectionName,const struct mach_header *mhp) {
@@ -66,7 +66,7 @@ static void dyld_callback(const struct mach_header *mhp, intptr_t vmaddr_slide) 
                 NSString *action  = [json allValues][0];
                 if (target && action) {
                     if (!is_method_callable(target, action)) {
-                        NSLog(@"KSRouter: The following method is not callable: -[%@ %@:]", target, action);
+                        NSLog(@"YBRouter: The following method is not callable: -[%@ %@:]", target, action);
 #ifdef DEBUG
                         abort();
 #endif
