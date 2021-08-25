@@ -1,9 +1,9 @@
 //
 //  NSString+JSON.m
-//  edianzu
+//  YBRouter
 //
-//  Created by EDZ on 2017/1/18.
-//  Copyright © 2017年 edianzu. All rights reserved.
+//  Created by 王迎博 on 2017/1/18.
+//  Copyright © 2017年 王迎博. All rights reserved.
 //
 
 #import "NSString+JSON.h"

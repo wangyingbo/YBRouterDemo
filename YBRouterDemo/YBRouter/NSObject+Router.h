@@ -1,9 +1,9 @@
 //
 //  NSObject+Router.h
-//  YBRouterDemo
+//  YBRouter
 //
-//  Created by fengbang on 2020/1/9.
-//  Copyright © 2020 王颖博. All rights reserved.
+//  Created by 王迎博 on 2020/1/9.
+//  Copyright © 2020 王迎博. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

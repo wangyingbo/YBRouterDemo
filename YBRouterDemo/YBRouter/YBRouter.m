@@ -1,9 +1,9 @@
 //
 //  YBRouter.m
-//  YBRouterDemo
+//  YBRouter
 //
-//  Created by fengbang on 2019/10/11.
-//  Copyright © 2019 王颖博. All rights reserved.
+//  Created by 王迎博 on 2019/10/11.
+//  Copyright © 2019 王迎博. All rights reserved.
 //   
 
 #import "YBRouter.h"

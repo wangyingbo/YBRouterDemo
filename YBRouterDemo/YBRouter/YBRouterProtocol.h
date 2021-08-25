@@ -1,9 +1,9 @@
 //
-//  FBRouterProtocol.h
-//  FengbangB
+//  YBRouterProtocol.h
+//  YBRouter
 //
 //  Created by 王迎博 on 2018/6/15.
-//  Copyright © 2018年 com.fengbangstore. All rights reserved.
+//  Copyright © 2018年 王迎博. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

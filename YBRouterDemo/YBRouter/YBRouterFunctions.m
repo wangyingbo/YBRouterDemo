@@ -1,9 +1,9 @@
 //
-//  FBRouter.m
-//  FengbangB
+//  YBRouterFunctions.m
+//  YBRouter
 //
-//  Created by fengbang on 2018/7/16.
-//  Copyright © 2018年 com.fengbangstore. All rights reserved.
+//  Created by 王迎博 on 2018/7/16.
+//  Copyright © 2018年 王迎博. All rights reserved.
 //
 //  KSRouter
 
